@@ -69,7 +69,7 @@
 
 ## 四、原型
 
-![prototype](/Users/lvruheng/SuiYue/SuiYue/screenshot/prototype.png)
+![](https://raw.githubusercontent.com/LRH1993/SuiYue/master/screenshot/prototype.png)
 
 ## 五、输出
 

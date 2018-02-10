@@ -67,7 +67,11 @@
 - 代码混淆
 - …...
 
-## 四、输出
+## 四、原型
+
+![prototype](/Users/lvruheng/SuiYue/SuiYue/screenshot/prototype.png)
+
+## 五、输出
 
 学习输出…...
 

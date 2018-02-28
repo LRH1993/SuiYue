@@ -1,13 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.ruheng.suiyue.MainActivity">
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:text="28 Feb 2018 "
+                android:textStyle="italic"
+                android:id="@+id/tv_bar_weather" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/tv_bar_title"
+                android:text="碎阅"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:id="@+id/iv_search"
+                android:src="@drawable/icon_search"
+                android:layout_toLeftOf="@id/iv_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:id="@+id/iv_scan"
+                android:src="@drawable/icon_scan"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
     <FrameLayout
+        android:layout_above="@id/rg_root"
+        android:layout_below="@id/toolbar"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </FrameLayout>
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_above="@+id/rg_root"
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"></View>
+    <RadioGroup
+        android:id="@+id/rg_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textColor="@color/gray"
+            android:drawableTop="@drawable/icon_article"
+            android:gravity="center"
+            android:text="文章"/>
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_find"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textColor="@color/gray"
+            android:drawableTop="@drawable/icon_book"
+            android:gravity="center"
+            android:text="图书"
+            />
+
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_hot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textColor="@color/gray"
+            android:drawableTop="@drawable/icon_movie"
+            android:gravity="center"
+            android:text="电影"/>
+    </RadioGroup>
+
+</RelativeLayout>

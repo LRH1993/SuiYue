@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
             <ImageView
+                android:visibility="invisible"
                 android:layout_marginRight="10dp"
                 android:id="@+id/iv_search"
                 android:src="@drawable/icon_search"
@@ -37,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
             <ImageView
+                android:visibility="invisible"
                 android:layout_marginRight="10dp"
                 android:id="@+id/iv_scan"
                 android:src="@drawable/icon_scan"
@@ -69,37 +71,37 @@
 
         <RadioButton
             android:textSize="10sp"
-            android:id="@+id/rb_home"
+            android:id="@+id/rb_article"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:drawableTop="@drawable/icon_article"
             android:gravity="center"
             android:text="文章"/>
         <RadioButton
             android:textSize="10sp"
-            android:id="@+id/rb_find"
+            android:id="@+id/rb_book"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:textColor="@color/gray"
-            android:drawableTop="@drawable/icon_book"
+            android:drawableTop="@drawable/icon_book_gray"
             android:gravity="center"
             android:text="图书"
             />
 
         <RadioButton
             android:textSize="10sp"
-            android:id="@+id/rb_hot"
+            android:id="@+id/rb_movie"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:textColor="@color/gray"
-            android:drawableTop="@drawable/icon_movie"
+            android:drawableTop="@drawable/icon_movie_gray"
             android:gravity="center"
             android:text="电影"/>
     </RadioGroup>

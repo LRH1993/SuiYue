@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import com.gyf.barlibrary.ImmersionBar
 import com.ruheng.suiyue.article.ArticleFragment
 import com.ruheng.suiyue.base.BaseFragment
 import com.ruheng.suiyue.book.BookFragment
@@ -16,16 +17,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var articleFragment: BaseFragment
     private lateinit var bookFragment: BaseFragment
     private lateinit var movieFragment: BaseFragment
-    var mExitTime: Long = 0
-    var mToast: Toast? = null
+    private var mExitTime: Long = 0
+    private var mToast: Toast? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ImmersionBar.with(this).transparentBar().barAlpha(0.3f).init()
         //隐藏底部导航栏
-        val window = window
-        val params = window.attributes
-        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        window.attributes = params
+        val decorView = window.decorView
+        val uiOptions = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        decorView.systemUiVisibility = uiOptions
         initFragment(savedInstanceState)
         setRadioButton()
 
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.rb_article -> {
                 rb_article.isChecked = true
-                rb_article.setCompoundDrawablesWithIntrinsicBounds(null,resources.getDrawable(R.drawable.icon_article),null,null)
+                rb_article.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(R.drawable.icon_article), null, null)
                 rb_article.setTextColor(resources.getColor(R.color.black))
                 supportFragmentManager.beginTransaction().show(articleFragment)
                         .hide(bookFragment)
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.rb_book -> {
                 rb_book.isChecked = true
-                rb_book.setCompoundDrawablesWithIntrinsicBounds(null,resources.getDrawable(R.drawable.icon_book),null,null)
+                rb_book.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(R.drawable.icon_book), null, null)
                 rb_book.setTextColor(resources.getColor(R.color.black))
                 supportFragmentManager.beginTransaction().show(bookFragment)
                         .hide(articleFragment)
@@ -96,7 +98,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.rb_movie -> {
                 rb_movie.isChecked = true
-                rb_movie.setCompoundDrawablesWithIntrinsicBounds(null,resources.getDrawable(R.drawable.icon_movie),null,null)
+                rb_movie.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(R.drawable.icon_movie), null, null)
                 rb_movie.setTextColor(resources.getColor(R.color.black))
                 supportFragmentManager.beginTransaction().show(movieFragment)
                         .hide(articleFragment)
@@ -113,6 +115,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mToast?.let {
             mToast!!.cancel()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ImmersionBar.with(this).destroy()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -132,9 +139,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun clearState() {
         rg_root.clearCheck()
-        rb_article.setCompoundDrawablesWithIntrinsicBounds(null,resources.getDrawable(R.drawable.icon_article_gray),null,null)
-        rb_book.setCompoundDrawablesWithIntrinsicBounds(null,resources.getDrawable(R.drawable.icon_book_gray),null,null)
-        rb_movie.setCompoundDrawablesWithIntrinsicBounds(null,resources.getDrawable(R.drawable.icon_movie_gray),null,null)
+        rb_article.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(R.drawable.icon_article_gray), null, null)
+        rb_book.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(R.drawable.icon_book_gray), null, null)
+        rb_movie.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(R.drawable.icon_movie_gray), null, null)
         rb_article.setTextColor(resources.getColor(R.color.gray))
         rb_movie.setTextColor(resources.getColor(R.color.gray))
         rb_book.setTextColor(resources.getColor(R.color.gray))

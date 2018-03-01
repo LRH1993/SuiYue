@@ -8,7 +8,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.ruheng.suiyue"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -32,4 +32,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.facebook.fresco:fresco:1.8.1'
     implementation 'androidx.core:core-ktx:0.1'
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
 }

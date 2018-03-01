@@ -16,10 +16,10 @@ class CacheInterceptor(context: Context) : Interceptor {
         var request = chain?.request()
         if (NetworkUtils.isNetConneted(context)) {
             val response = chain?.proceed(request)
-            // read from cache for 60 s
-            val maxAge = 60
+            // read from cache for 360 s
+            val maxAge = 360
             val cacheControl = request?.cacheControl().toString()
-            Log.e("CacheInterceptor", "60s load cahe" + cacheControl)
+            Log.e("CacheInterceptor", "360s load cahe" + cacheControl)
             return response?.newBuilder()?.removeHeader("Pragma")?.removeHeader("Cache-Control")?.header("Cache-Control", "public, max-age=" + maxAge)?.build()
         } else {
             Log.e("CacheInterceptor", " no network load cahe")

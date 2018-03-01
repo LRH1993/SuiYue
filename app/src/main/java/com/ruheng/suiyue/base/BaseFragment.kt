@@ -56,7 +56,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * 当fragment对用户可见时，会调用该方法，可在该方法中懒加载网络数据
      */
-     fun onUserVisible() {
+     open fun onUserVisible() {
 
     }
 

@@ -8,15 +8,16 @@ import android.view.View
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.ruheng.suiyue.article.ArticleFragment
-import com.ruheng.suiyue.base.BaseFragment
 import com.ruheng.suiyue.book.BookFragment
+import com.ruheng.suiyue.book.BookPresenter
 import com.ruheng.suiyue.movie.MovieFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var articleFragment: BaseFragment
-    private lateinit var bookFragment: BaseFragment
-    private lateinit var movieFragment: BaseFragment
+    private lateinit var articleFragment: ArticleFragment
+    private lateinit var bookFragment: BookFragment
+    private lateinit var movieFragment: MovieFragment
+    private lateinit var bookPresenter: BookPresenter
     private var mExitTime: Long = 0
     private var mToast: Toast? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             fragmentTrans.add(R.id.fl_content, movieFragment)
             fragmentTrans.commit()
         }
+        bookPresenter = BookPresenter(bookFragment)
         supportFragmentManager.beginTransaction().show(articleFragment)
                 .hide(bookFragment)
                 .hide(movieFragment)

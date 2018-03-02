@@ -2,9 +2,9 @@ package com.ruheng.suiyue.network
 
 import android.content.Context
 import android.util.Log
-import okhttp3.*
+import okhttp3.Cache
+import okhttp3.OkHttpClient
 import java.io.File
-import java.io.IOException
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
@@ -65,92 +65,6 @@ class OkhttpUtil private constructor(context: Context) {
         builder.sslSocketFactory(createSSLSocketFactory())
         builder.hostnameVerifier { _, _ -> true }
         okhttpClient = builder.build()
-    }
-
-    /**
-     * get请求，同步方式，获取网络数据
-     * @param url
-     * @return
-     */
-    fun getDataSync(url: String): Response {
-        val builder = Request.Builder()
-        val request = builder.get().url(url).build()
-        val call = okhttpClient.newCall(request)
-        var response = call.execute()
-        return response
-    }
-
-    /**
-     * post请求，同步方式，提交数据
-     * @param url
-     * @param bodyParams
-     * @return
-     */
-    fun postDataSync(url: String, bodyParams: Map<String, String>): Response {
-        val requestBody = setRequestBody(bodyParams)
-        val builder = Request.Builder()
-        val request = builder.post(requestBody).url(url).build()
-        val call = okhttpClient.newCall(request)
-        val response = call.execute()
-        return response
-    }
-
-    /**
-     * get请求，异步方式，获取网络数据
-     * @param url
-     * @param networkCallback
-     * @return
-     */
-    fun getDataAsync(url: String, networkCallback: NetworkCallback) {
-        val builder = Request.Builder()
-        val request = builder.get().url(url).build()
-        val call = okhttpClient.newCall(request)
-        call.enqueue(object : Callback {
-            override fun onFailure(call: Call?, e: IOException?) {
-                networkCallback.fail(call, e)
-            }
-
-            override fun onResponse(call: Call?, response: Response?) {
-                networkCallback.success(call, response)
-            }
-
-        })
-    }
-
-    fun postDataAsync(url: String, networkCallback: NetworkCallback, bodyParams: Map<String, String>) {
-        val requestBody = setRequestBody(bodyParams)
-        val builder = Request.Builder()
-        val request = builder.post(requestBody).url(url).build()
-        val call = okhttpClient.newCall(request)
-        call.enqueue(object : Callback {
-            override fun onFailure(call: Call?, e: IOException?) {
-                networkCallback.fail(call, e)
-            }
-
-            override fun onResponse(call: Call?, response: Response?) {
-                networkCallback.success(call, response)
-            }
-
-        })
-    }
-
-    //自定义回调接口
-    interface NetworkCallback {
-        fun success(call: Call?, response: Response?)
-        fun fail(call: Call?, exception: IOException?)
-
-    }
-
-    private fun setRequestBody(bodyParams: Map<String, String>): RequestBody {
-        var requestBody: RequestBody?
-        var formEncodingBuilder = FormBody.Builder()
-        bodyParams?.entries?.forEach {
-            val key = it.key
-            val value = it.value
-            formEncodingBuilder.add(key, value)
-        }
-        requestBody = formEncodingBuilder.build()
-        return requestBody
     }
 
     /**

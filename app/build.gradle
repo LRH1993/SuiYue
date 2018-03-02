@@ -34,4 +34,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:0.1'
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.badoo.mobile:android-weak-handler:1.1'
+    implementation 'com.google.code.gson:gson:2.2.4'
 }

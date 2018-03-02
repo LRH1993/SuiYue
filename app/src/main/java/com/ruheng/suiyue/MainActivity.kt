@@ -11,6 +11,7 @@ import com.ruheng.suiyue.article.ArticleFragment
 import com.ruheng.suiyue.book.BookFragment
 import com.ruheng.suiyue.book.BookPresenter
 import com.ruheng.suiyue.movie.MovieFragment
+import com.ruheng.suiyue.movie.MoviePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var bookFragment: BookFragment
     private lateinit var movieFragment: MovieFragment
     private lateinit var bookPresenter: BookPresenter
+    private lateinit var moviePresenter: MoviePresenter
     private var mExitTime: Long = 0
     private var mToast: Toast? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +69,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             fragmentTrans.commit()
         }
         bookPresenter = BookPresenter(bookFragment)
+        moviePresenter = MoviePresenter(movieFragment)
         supportFragmentManager.beginTransaction().show(articleFragment)
                 .hide(bookFragment)
                 .hide(movieFragment)

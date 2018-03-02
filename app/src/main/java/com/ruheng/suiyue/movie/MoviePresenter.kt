@@ -1,11 +1,11 @@
-package com.ruheng.suiyue.book
+package com.ruheng.suiyue.movie
 
 import com.ruheng.suiyue.network.OkhttpUtil
 
 /**
  * Created by lvruheng on 2018/3/1.
  */
-class BookPresenter(view: BookContract.View) : BookContract.Presenter {
+class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
     var mView = view
     init {
         view.setPresenter(this)

@@ -1,5 +1,6 @@
 package com.ruheng.suiyue.book
 
+import android.content.Context
 import android.os.Bundle
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
@@ -8,8 +9,9 @@ import com.ruheng.suiyue.base.BaseFragment
  * Created by lvruheng on 2018/2/28.
  */
 class BookFragment : BaseFragment(), BookContract.View {
+
     lateinit var mPresenter: BookPresenter
-    var mLastRefreshTime:Long = 0
+    var mLastRefreshTime: Long = 0
     override fun initView(savedInstanceState: Bundle?) {
     }
 
@@ -21,16 +23,19 @@ class BookFragment : BaseFragment(), BookContract.View {
         mPresenter = presenter as BookPresenter
     }
 
-    override fun onResume() {
-        super.onResume()
-        mPresenter.start()
+    override fun getBookContext(): Context? {
+        return if (isActive()) {
+            context
+        } else {
+            null
+        }
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if(!hidden){
+        if (!hidden) {
             //距离上次刷新超过6分钟，重新加载数据
-            if(System.currentTimeMillis().minus(mLastRefreshTime)>3600000){
+            if (System.currentTimeMillis().minus(mLastRefreshTime) > 3600000) {
                 mPresenter.start()
             }
             mLastRefreshTime = System.currentTimeMillis()

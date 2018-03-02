@@ -25,7 +25,7 @@ class OkhttpUtil private constructor(context: Context) {
 
     companion object {
         @JvmStatic
-        lateinit var mInstance: OkhttpUtil
+        private lateinit var mInstance: OkhttpUtil
 
         /**
          * 单例获取OkhttpUtil

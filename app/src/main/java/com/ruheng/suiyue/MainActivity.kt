@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.ruheng.suiyue.article.ArticleFragment
+import com.ruheng.suiyue.article.ArticlePresenter
 import com.ruheng.suiyue.book.BookFragment
 import com.ruheng.suiyue.book.BookPresenter
 import com.ruheng.suiyue.movie.MovieFragment
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var movieFragment: MovieFragment
     private lateinit var bookPresenter: BookPresenter
     private lateinit var moviePresenter: MoviePresenter
+    private lateinit var articlePresenter: ArticlePresenter
     private var mExitTime: Long = 0
     private var mToast: Toast? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         bookPresenter = BookPresenter(bookFragment)
         moviePresenter = MoviePresenter(movieFragment)
+        articlePresenter = ArticlePresenter(articleFragment)
         supportFragmentManager.beginTransaction().show(articleFragment)
                 .hide(bookFragment)
                 .hide(movieFragment)

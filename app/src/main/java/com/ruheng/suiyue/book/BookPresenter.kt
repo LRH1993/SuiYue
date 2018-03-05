@@ -17,7 +17,7 @@ class BookPresenter(view: BookContract.View) : BookContract.Presenter {
 
     override fun loadData() {
         if(mView.isActive()){
-            val okhttpClient = OkhttpUtil.getInstance(mView.getBookContext()!!)
+            val okhttpUtil = OkhttpUtil.getInstance(mView.getBookContext()!!)
 
         }
 

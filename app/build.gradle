@@ -31,7 +31,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.facebook.fresco:fresco:1.8.1'
-    implementation 'androidx.core:core-ktx:0.1'
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.badoo.mobile:android-weak-handler:1.1'

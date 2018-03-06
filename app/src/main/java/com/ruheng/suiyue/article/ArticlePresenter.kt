@@ -57,7 +57,7 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
         var parser = GsonParser(clazz)
         var callback: Callback<OneListBean> = object : Callback<OneListBean>(parser) {
             override fun onResponse(t: OneListBean) {
-
+                mView?.setOneList(t)
 
             }
 

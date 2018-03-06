@@ -1,8 +1,8 @@
 package com.ruheng.suiyue.article
 
-import android.util.Log
 import com.ruheng.suiyue.data.ArticleModel
 import com.ruheng.suiyue.data.bean.IdListBean
+import com.ruheng.suiyue.data.bean.OneListBean
 import com.ruheng.suiyue.network.Callback
 import com.ruheng.suiyue.network.GsonParser
 import com.ruheng.suiyue.network.OkhttpUtil
@@ -12,12 +12,13 @@ import java.io.IOException
  * Created by lvruheng on 2018/3/1.
  */
 class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
+
     override fun detachView() {
         mView = null
     }
 
     private lateinit var model: ArticleModel
-    var mView:ArticleContract.View? = view
+    var mView: ArticleContract.View? = view
 
     init {
         view.setPresenter(this)
@@ -35,10 +36,13 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
 
     override fun loadData() {
         var clazz = IdListBean::class.java
-        var parser = GsonParser<IdListBean>(clazz)
+        var parser = GsonParser(clazz)
         var callback: Callback<IdListBean> = object : Callback<IdListBean>(parser) {
             override fun onResponse(t: IdListBean) {
-                Log.e("日志","条数"+t.data?.size)
+                if (t.data?.size!! > 0) {
+                    val data = t.data[0]
+                    loadList(data)
+                }
             }
 
             override fun onFailure(e: IOException) {
@@ -47,4 +51,22 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
         }
         model.getIdList(callback)
     }
+
+    override fun loadList(data: String) {
+        var clazz = OneListBean::class.java
+        var parser = GsonParser(clazz)
+        var callback: Callback<OneListBean> = object : Callback<OneListBean>(parser) {
+            override fun onResponse(t: OneListBean) {
+
+
+            }
+
+            override fun onFailure(e: IOException) {
+
+            }
+
+        }
+        model.getOneList(data, callback)
+    }
+
 }

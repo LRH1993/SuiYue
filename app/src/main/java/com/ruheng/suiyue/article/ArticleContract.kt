@@ -17,5 +17,6 @@ interface ArticleContract {
 
     interface Presenter : BasePresenter {
         fun loadData()
+        fun loadList(data:String)
     }
 }

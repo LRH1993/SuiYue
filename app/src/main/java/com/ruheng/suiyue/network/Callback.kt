@@ -63,7 +63,12 @@ abstract class Callback<T>(parser: Parser<T>) : Callback {
                     }
                 }
                 CALLBACK_FAILED -> {
-                    val e = msg.obj as IOException
+                    var e: IOException = if (msg.obj != null) {
+                        msg.obj as IOException
+                    } else {
+                        IOException("response is wrong")
+                    }
+
                     if (mCallback != null) {
                         mCallback.onFailure(e)
                     }

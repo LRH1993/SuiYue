@@ -42,8 +42,6 @@ data class ContentListItem(@SerializedName("content_bgcolor")
                            val contentId: String = "",
                            @SerializedName("forward")
                            val forward: String = "",
-                           @SerializedName("author")
-                           val author: Author,
                            @SerializedName("share_info")
                            val shareInfo: ShareInfo,
                            @SerializedName("words_info")

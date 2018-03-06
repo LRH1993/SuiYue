@@ -19,13 +19,14 @@ import javax.net.ssl.X509TrustManager
  */
 class OkhttpUtil private constructor(context: Context) {
     private var okhttpClient: OkHttpClient
-    private lateinit var httpCacheDirectory: File
-    private lateinit var cache: Cache
+    private var httpCacheDirectory: File? = null
+    private var cache: Cache? = null
     private val mContext: Context = context
 
     companion object {
+        @Volatile
         @JvmStatic
-        private lateinit var mInstance: OkhttpUtil
+        private var mInstance: OkhttpUtil? = null
 
         /**
          * 单例获取OkhttpUtil
@@ -39,7 +40,7 @@ class OkhttpUtil private constructor(context: Context) {
                     }
                 }
             }
-            return mInstance
+            return mInstance!!
         }
     }
 

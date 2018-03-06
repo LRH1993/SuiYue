@@ -23,7 +23,7 @@ class GsonParser<T>(clazz: Class<T>) : Parser<T> {
     override fun parse(response: Response): T? {
         try {
             var gson = Gson()
-            val str = response.body().toString()
+            val str = response.body()?.string()
             val t = gson.fromJson(str, mClass)
             return t
         } catch (e: IOException) {

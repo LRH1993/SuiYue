@@ -1,11 +1,10 @@
 package com.ruheng.suiyue.data
 
 import com.ruheng.suiyue.data.bean.IdListBean
+import com.ruheng.suiyue.data.bean.OneListBean
 import com.ruheng.suiyue.network.Api
 import com.ruheng.suiyue.network.Callback
-import com.ruheng.suiyue.network.GsonParser
 import com.ruheng.suiyue.network.OkhttpUtil
-import java.io.IOException
 
 /**
  * Created by lvruheng on 2018/3/5.
@@ -21,19 +20,11 @@ class ArticleModel(okhttpUtil: OkhttpUtil) {
     //获取评论信息，其中item_id替换成onelist中的item_id值
     val COMMENT_URL = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/item_id/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android"
 
-    fun getIdList() {
+    fun getIdList(callback: Callback<IdListBean>) {
         var url = Api.BASE_ARTICLE_URL + IDLIST_URL
-        var clazz = IdListBean::class.java
-        var parser = GsonParser<IdListBean>(clazz)
-        var callback: Callback<IdListBean> = object : Callback<IdListBean>(parser) {
-            override fun onResponse(t: IdListBean) {
-
-            }
-
-            override fun onFailure(e: IOException) {
-            }
-
-        }
         mOkhttpUtil.getDataAsync(url, callback)
+    }
+    fun getOneList(callback: Callback<OneListBean>){
+
     }
 }

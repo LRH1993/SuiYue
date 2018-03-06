@@ -7,17 +7,24 @@ import com.ruheng.suiyue.network.OkhttpUtil
  * Created by lvruheng on 2018/3/1.
  */
 class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
+    override fun detachView() {
+        mView = null
+    }
+
     private lateinit var model: ArticleModel
-    var mView = view
+    var mView:ArticleContract.View? = view
 
     init {
         view.setPresenter(this)
     }
 
     override fun start() {
-        if (mView.isActive()) {
-            val okhttpUtil = OkhttpUtil.getInstance(mView.getBookContext()!!)
-            model = ArticleModel(okhttpUtil)
+        mView?.let {
+            if (mView!!.isActive()) {
+                val okhttpUtil = OkhttpUtil.getInstance(mView?.getBookContext()!!)
+                model = ArticleModel(okhttpUtil)
+
+            }
         }
         loadData()
     }

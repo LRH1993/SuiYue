@@ -54,5 +54,9 @@ class BookFragment : BaseFragment(), BookContract.View {
         return isAdded
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView()
+    }
 
 }

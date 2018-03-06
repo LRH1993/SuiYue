@@ -54,4 +54,9 @@ class ArticleFragment : BaseFragment(), ArticleContract.View {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView()
+    }
+
 }

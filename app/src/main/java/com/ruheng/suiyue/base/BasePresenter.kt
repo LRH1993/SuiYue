@@ -5,4 +5,5 @@ package com.ruheng.suiyue.base
  */
 interface BasePresenter {
     fun start()
+    fun detachView()
 }

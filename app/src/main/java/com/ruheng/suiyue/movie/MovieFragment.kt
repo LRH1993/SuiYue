@@ -53,4 +53,9 @@ class MovieFragment : BaseFragment(), MovieContract.View {
             null
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView()
+    }
 }

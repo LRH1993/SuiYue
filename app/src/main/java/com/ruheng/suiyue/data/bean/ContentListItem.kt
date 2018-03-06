@@ -20,8 +20,6 @@ data class ContentListItem(@SerializedName("content_bgcolor")
                            val videoUrl: String = "",
                            @SerializedName("content_type")
                            val contentType: String = "",
-                           @SerializedName("share_list")
-                           val shareList: ShareList,
                            @SerializedName("serial_id")
                            val serialId: Int = 0,
                            @SerializedName("id")

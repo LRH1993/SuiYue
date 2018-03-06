@@ -2,13 +2,17 @@ package com.ruheng.suiyue.article
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.LinearLayoutManager
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_article.*
 
 /**
  * Created by lvruheng on 2018/2/28.
  */
-class ArticleFragment : BaseFragment(), ArticleContract.View {
+class ArticleFragment : BaseFragment(), ArticleContract.View,SwipeRefreshLayout.OnRefreshListener {
+
     lateinit var mPresenter: ArticlePresenter
     var mLastRefreshTime: Long = 0
     override fun getLayoutResources(): Int {
@@ -16,9 +20,14 @@ class ArticleFragment : BaseFragment(), ArticleContract.View {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = ArticleAdapter()
+        refreshLayout.setOnRefreshListener(this)
     }
 
+    override fun onRefresh() {
+
+    }
     override fun onResume() {
         super.onResume()
         //距离上次刷新超过6分钟，重新加载数据

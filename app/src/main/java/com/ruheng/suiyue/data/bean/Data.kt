@@ -9,6 +9,4 @@ data class Data(@SerializedName("date")
                 @SerializedName("weather")
                 val weather: Weather,
                 @SerializedName("id")
-                val id: String = "",
-                @SerializedName("menu")
-                val menu: Menu)
+                val id: String = "")

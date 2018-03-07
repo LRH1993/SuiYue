@@ -29,8 +29,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:actualImageScaleType="fitXY"
+                app:placeholderImage="@drawable/placeholder"
+                app:placeholderImageScaleType="fitXY"
                 app:viewAspectRatio="1.5"
-                fresco:fadeDuration="300" />
+                app:progressBarImage="@drawable/photo_loading"
+                app:progressBarAutoRotateInterval="1000"
+                app:progressBarImageScaleType="center"
+                fresco:fadeDuration="600" />
 
             <TextView
                 android:id="@+id/tv_article_title"

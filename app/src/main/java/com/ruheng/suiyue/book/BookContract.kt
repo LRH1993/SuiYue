@@ -10,6 +10,8 @@ import com.ruheng.suiyue.data.bean.BookListBean
  */
 interface BookContract {
     interface View : BaseView<Presenter> {
+        fun startFloatAnim()
+        fun stopFloatAnim()
         fun isActive(): Boolean
         fun getBookContext():Context?
         fun setBookList(bookListBean: BookListBean)
@@ -17,5 +19,6 @@ interface BookContract {
 
     interface Presenter : BasePresenter {
         fun loadData()
+        fun refreshData()
     }
 }

@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_book.*
  * Created by lvruheng on 2018/2/28.
  */
 class BookFragment : BaseFragment(), BookContract.View {
+
     var mList = ArrayList<BooksItem>()
     private lateinit var mFloatTouchListener: FloatTouchListener
     private var mFloatViewBoundsInScreens: Rect? = null
@@ -60,6 +61,7 @@ class BookFragment : BaseFragment(), BookContract.View {
         bookListBean.books?.forEach {
             mList?.add(it)
         }
+        mAdapter?.notifyDataSetChanged()
 
     }
 
@@ -95,15 +97,22 @@ class BookFragment : BaseFragment(), BookContract.View {
                     rl_root.height + mainLocation[1])
             mFloatTouchListener = FloatTouchListener(activity, mFloatViewBoundsInScreens, mFloatBtnWrapper,
                     mFloatBtnWindowParams, mainLocation[1], mEdgePadding)
-            mFloatRootView.setOnTouchListener(mFloatTouchListener)
-            mFloatRootView.setOnClickListener {
-                val rotateAnimation = RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-                rotateAnimation.duration = 1000
-                rotateAnimation.repeatCount = 3
-                float_button.startAnimation(rotateAnimation)
-                //todo 换一批书
+            float_button.setOnTouchListener(mFloatTouchListener)
+            float_button.setOnClickListener {
+                mPresenter.refreshData()
             }
         }
+    }
+
+    override fun startFloatAnim() {
+        val rotateAnimation = RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        rotateAnimation.duration = 100
+        rotateAnimation.repeatCount = Int.MAX_VALUE
+        float_button.startAnimation(rotateAnimation)
+    }
+
+    override fun stopFloatAnim() {
+        float_button.clearAnimation()
     }
 
     override fun setPresenter(presenter: BookContract.Presenter) {

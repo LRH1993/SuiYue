@@ -11,6 +11,7 @@ import java.io.IOException
  * Created by lvruheng on 2018/3/1.
  */
 class BookPresenter(view: BookContract.View) : BookContract.Presenter {
+
     private var index: Int = 1
     override fun detachView() {
         mView = null
@@ -51,4 +52,23 @@ class BookPresenter(view: BookContract.View) : BookContract.Presenter {
 
 
     }
+    override fun refreshData() {
+        mView?.startFloatAnim()
+        var clazz = BookListBean::class.java
+        var parser = GsonParser(clazz)
+        var callback: Callback<BookListBean> = object : Callback<BookListBean>(parser) {
+            override fun onResponse(t: BookListBean) {
+                mView?.setBookList(t)
+                mView?.stopFloatAnim()
+
+            }
+
+            override fun onFailure(e: IOException) {
+            }
+
+        }
+        model.getBookList(index, callback)
+        index = index.inc()
+    }
+
 }

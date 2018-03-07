@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"/>
             <ImageView
                 android:visibility="invisible"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/iv_search"
                 android:src="@drawable/icon_search"
                 android:layout_toLeftOf="@id/iv_scan"
@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"/>
             <ImageView
                 android:visibility="invisible"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/iv_scan"
                 android:src="@drawable/icon_scan"
                 android:layout_alignParentRight="true"

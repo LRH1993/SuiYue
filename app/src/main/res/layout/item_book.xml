@@ -52,7 +52,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="英雄的胜利"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -62,50 +61,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="希腊罗马神话"
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rt_book_rating"
                         android:layout_width="100dp"
                         android:layout_height="20dp"
-                        android:id="@+id/rt_book_rating"
                         app:mrb_progressTint="@color/pink"
                         app:mrb_secondaryProgressTint="@color/pink" />
+
                     <TextView
-                        android:layout_marginLeft="5dp"
-                        android:text="2.5"
-                        android:textColor="@color/yellow"
+                        android:id="@+id/tv_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_rating"/>
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/yellow" />
+
                     <TextView
                         android:id="@+id/tv_rating_count"
-                        android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14评价"/>
+                        android:layout_marginLeft="5dp" />
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/tv_book_desc"
-                    android:maxLines="3"
-                    android:layout_marginTop="10dp"
-                    android:ellipsize="end"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:text="《英雄的胜利:希腊罗马神话》讲述的是：由于神的咒语，希腊俄狄浦斯王杀父娶母；赫拉克勒斯，世界上最为力大无穷的人，为自己谋杀妻儿的罪行赎罪所做的一系列惊人之举"/>
 
                 <TextView
+                    android:id="@+id/tv_book_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textSize="10sp" />
+
+                <TextView
                     android:id="@+id/tv_book_price"
-                    android:textColor="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥12.99" />
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/green" />
             </LinearLayout>
 
         </RelativeLayout>

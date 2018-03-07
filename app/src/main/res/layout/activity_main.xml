@@ -51,7 +51,7 @@
         android:layout_below="@id/toolbar"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
     </FrameLayout>
     <View
         android:layout_above="@+id/rg_root"

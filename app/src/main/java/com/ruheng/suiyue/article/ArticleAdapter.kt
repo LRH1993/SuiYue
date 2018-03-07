@@ -1,6 +1,8 @@
 package com.ruheng.suiyue.article
 
 import android.content.Context
+import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -31,13 +33,19 @@ class ArticleAdapter(context: Context, contentList: MutableList<ContentListItem>
         val postDate = bean?.postDate
         val likeCount = bean?.likeCount
         holder.tv_desc?.text = forward
-        holder.tv_like?.text = "喜欢 "+likeCount.toString()
+        holder.tv_like?.text = "喜欢 " + likeCount.toString()
         holder.tv_title?.text = title
         holder.sv_photo?.setImageURI(imgUrl)
-        val time = postDate?.substring(5,10)
+        val time = postDate?.substring(5, 10)
         holder.tv_time?.text = time
-        holder.itemView.setOnClickListener {
+        holder.cv_root?.setOnClickListener {
             //跳转到文章详情页
+            var intent = Intent(context, ArticleDetailActivity::class.java)
+            var item_id = bean?.itemId
+            intent.putExtra("item_id", item_id)
+            context?.let { context ->
+                context.startActivity(intent)
+            }
         }
     }
 
@@ -55,8 +63,10 @@ class ArticleAdapter(context: Context, contentList: MutableList<ContentListItem>
         var tv_desc: TextView? = null
         var tv_time: TextView? = null
         var tv_like: TextView? = null
+        var cv_root: CardView? = null
 
         init {
+            cv_root = itemView?.findViewById(R.id.cv_root)
             sv_photo = itemView?.findViewById(R.id.sv_article_photo)
             tv_title = itemView?.findViewById(R.id.tv_article_title)
             tv_desc = itemView?.findViewById(R.id.tv_article_desc)

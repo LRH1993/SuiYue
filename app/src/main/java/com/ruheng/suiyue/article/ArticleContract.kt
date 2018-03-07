@@ -10,8 +10,6 @@ import com.ruheng.suiyue.data.bean.OneListBean
  */
 interface ArticleContract {
     interface View : BaseView<Presenter> {
-        fun setLoadingIndicator()
-        fun showLoadingError()
         fun isActive(): Boolean
         fun getBookContext(): Context?
         fun setOneList(oneListBean: OneListBean)

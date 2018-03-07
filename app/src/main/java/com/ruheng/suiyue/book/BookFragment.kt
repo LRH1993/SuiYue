@@ -3,6 +3,7 @@ package com.ruheng.suiyue.book
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.Animation
@@ -13,6 +14,8 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
+import com.ruheng.suiyue.data.bean.BookListBean
+import com.ruheng.suiyue.data.bean.BooksItem
 import com.ruheng.suiyue.widget.FloatTouchListener
 import kotlinx.android.synthetic.main.float_btn.*
 import kotlinx.android.synthetic.main.fragment_book.*
@@ -22,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_book.*
  * Created by lvruheng on 2018/2/28.
  */
 class BookFragment : BaseFragment(), BookContract.View {
-
+    var mList = ArrayList<BooksItem>()
     private lateinit var mFloatTouchListener: FloatTouchListener
     private var mFloatViewBoundsInScreens: Rect? = null
     private var mEdgePadding: Int = 0
@@ -31,7 +34,12 @@ class BookFragment : BaseFragment(), BookContract.View {
     lateinit var mPresenter: BookPresenter
     var mLastRefreshTime: Long = 0
     var mFloatBtnWrapper: LinearLayout? = null
+    private var mAdapter: BookAdapter?=null
+
     override fun initView(savedInstanceState: Bundle?) {
+        rv_book.layoutManager = LinearLayoutManager(context)
+        mAdapter = BookAdapter(context!!, mList)
+        rv_book.adapter = mAdapter
         addFloatBtn()
         setTouchListener()
     }
@@ -47,6 +55,16 @@ class BookFragment : BaseFragment(), BookContract.View {
 
     override fun getLayoutResources(): Int {
         return R.layout.fragment_book
+    }
+
+    override fun setBookList(bookListBean: BookListBean) {
+        if (mList?.size!! > 0) {
+            mList?.clear()
+        }
+        bookListBean.books?.forEach {
+            mList?.add(it)
+        }
+
     }
 
 
@@ -117,14 +135,6 @@ class BookFragment : BaseFragment(), BookContract.View {
             }
             mLastRefreshTime = System.currentTimeMillis()
         }
-    }
-
-    override fun setLoadingIndicator() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showLoadingError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun isActive(): Boolean {

@@ -15,6 +15,4 @@ data class Weather(@SerializedName("date")
                    @SerializedName("hurricane")
                    val hurricane: String = "",
                    @SerializedName("climate")
-                   val climate: String = "",
-                   @SerializedName("icons")
-                   val icons: Icons)
+                   val climate: String = "")

@@ -9,8 +9,6 @@ import com.ruheng.suiyue.base.BaseView
  */
 interface MovieContract {
     interface View : BaseView<Presenter> {
-        fun setLoadingIndicator()
-        fun showLoadingError()
         fun isActive(): Boolean
         fun getBookContext(): Context?
     }

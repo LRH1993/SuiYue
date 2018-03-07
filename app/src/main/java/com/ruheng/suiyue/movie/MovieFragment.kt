@@ -43,13 +43,6 @@ class MovieFragment : BaseFragment(), MovieContract.View {
         mPresenter = presenter as MoviePresenter
     }
 
-    override fun setLoadingIndicator() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showLoadingError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun isActive(): Boolean {
         return isAdded

@@ -38,4 +38,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'com.android.support:cardview-v7:27.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'me.zhanghai.android.materialratingbar:library:1.2.0'
 }

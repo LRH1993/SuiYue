@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:stateListAnimator="@drawable/lift_on_touch"
+        app:cardCornerRadius="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="20dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sv_book_photo"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                app:actualImageScaleType="fitXY"
+                app:placeholderImage="@drawable/placeholder"
+                app:placeholderImageScaleType="fitXY"
+                app:progressBarAutoRotateInterval="1000"
+                app:progressBarImage="@drawable/photo_loading"
+                app:progressBarImageScaleType="center"
+                app:viewAspectRatio="0.8"
+                fresco:fadeDuration="600" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/sv_book_photo"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_book_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="英雄的胜利"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_book_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="希腊罗马神话"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/rt_book_rating"
+                        app:mrb_progressTint="@color/pink"
+                        app:mrb_secondaryProgressTint="@color/pink" />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:text="2.5"
+                        android:textColor="@color/yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_rating"/>
+                    <TextView
+                        android:id="@+id/tv_rating_count"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="14评价"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_book_desc"
+                    android:maxLines="3"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="《英雄的胜利:希腊罗马神话》讲述的是：由于神的咒语，希腊俄狄浦斯王杀父娶母；赫拉克勒斯，世界上最为力大无穷的人，为自己谋杀妻儿的罪行赎罪所做的一系列惊人之举"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/tv_book_price"
+                    android:textColor="@color/green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥12.99" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

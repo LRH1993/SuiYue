@@ -49,6 +49,9 @@ public class FloatTouchListener implements View.OnTouchListener {
         mEdgePaddingLeft = edgePadding;
         mEdgePaddingRight = edgePadding;
         mEdgePaddingTop = edgePadding;
+        mFloatViewWindowParam.x= mBoundsInScreen.right-mEdgePaddingRight - mFloatView.getWidth();
+        mFloatViewWindowParam.y = mBoundsInScreen.bottom - mEdgePaddingBottom - mFloatView.getHeight()-mParentMarginTop;
+        mFloatView.requestLayout();
     }
 
     /**

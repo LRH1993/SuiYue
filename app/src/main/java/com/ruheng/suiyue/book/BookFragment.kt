@@ -10,8 +10,6 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.AbsoluteLayout
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.Toast
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
 import com.ruheng.suiyue.data.bean.BookListBean
@@ -34,14 +32,12 @@ class BookFragment : BaseFragment(), BookContract.View {
     lateinit var mPresenter: BookPresenter
     var mLastRefreshTime: Long = 0
     var mFloatBtnWrapper: LinearLayout? = null
-    private var mAdapter: BookAdapter?=null
+    private var mAdapter: BookAdapter? = null
 
     override fun initView(savedInstanceState: Bundle?) {
         rv_book.layoutManager = LinearLayoutManager(context)
         mAdapter = BookAdapter(context!!, mList)
         rv_book.adapter = mAdapter
-        addFloatBtn()
-        setTouchListener()
     }
 
     override fun onResume() {
@@ -72,17 +68,13 @@ class BookFragment : BaseFragment(), BookContract.View {
      * 添加浮动按钮
      */
     fun addFloatBtn() {
-        mFloatBtnWrapper = LayoutInflater.from(activity).inflate(R.layout.float_btn, null, false) as LinearLayout?
-        mFloatBtnWindowParams = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0, 0)
-        mFloatRootView = AbsoluteLayout(activity)
-        val lp = RelativeLayout.LayoutParams(
-
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-        rl_root.addView(mFloatRootView)
-        mFloatRootView.addView(mFloatBtnWrapper, mFloatBtnWindowParams)
-        mFloatRootView.layoutParams = lp
+        if (mFloatBtnWrapper == null) {
+            mFloatBtnWrapper = LayoutInflater.from(this!!.activity).inflate(R.layout.float_btn, null, false) as LinearLayout?
+            mFloatBtnWindowParams = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0, 0)
+            mFloatRootView = AbsoluteLayout(activity)
+            rl_root.addView(mFloatRootView)
+            mFloatRootView.addView(mFloatBtnWrapper, mFloatBtnWindowParams)
+        }
     }
 
 
@@ -109,7 +101,7 @@ class BookFragment : BaseFragment(), BookContract.View {
                 rotateAnimation.duration = 1000
                 rotateAnimation.repeatCount = 3
                 float_button.startAnimation(rotateAnimation)
-                Toast.makeText(activity, "点击展现效果", Toast.LENGTH_SHORT).show()
+                //todo 换一批书
             }
         }
     }
@@ -134,6 +126,8 @@ class BookFragment : BaseFragment(), BookContract.View {
                 mPresenter.start()
             }
             mLastRefreshTime = System.currentTimeMillis()
+            addFloatBtn()
+            setTouchListener()
         }
     }
 

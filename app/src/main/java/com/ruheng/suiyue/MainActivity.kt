@@ -11,9 +11,13 @@ import com.ruheng.suiyue.article.ArticleFragment
 import com.ruheng.suiyue.article.ArticlePresenter
 import com.ruheng.suiyue.book.BookFragment
 import com.ruheng.suiyue.book.BookPresenter
+import com.ruheng.suiyue.data.bean.Weather
 import com.ruheng.suiyue.movie.MovieFragment
 import com.ruheng.suiyue.movie.MoviePresenter
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var articleFragment: ArticleFragment
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         decorView.systemUiVisibility = uiOptions
         initFragment(savedInstanceState)
         setRadioButton()
+        EventBus.getDefault().register(this)
 
     }
 
@@ -77,6 +82,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .hide(bookFragment)
                 .hide(movieFragment)
                 .commit()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onWeatherEvent(weather: Weather){
+        val cityName = weather.cityName
+        val climate = weather.climate
+        val temperature = weather.temperature
+        tv_bar_weather.text = "$cityName·$climate  $temperature"
     }
 
     override fun onClick(v: View?) {
@@ -128,6 +141,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         ImmersionBar.with(this).destroy()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

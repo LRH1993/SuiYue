@@ -19,6 +19,7 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
 
     private lateinit var model: ArticleModel
     var mView: ArticleContract.View? = view
+    var mData:List<String>?=null
 
     init {
         view.setPresenter(this)
@@ -40,6 +41,7 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
         var callback: Callback<IdListBean> = object : Callback<IdListBean>(parser) {
             override fun onResponse(t: IdListBean) {
                 if (t.data?.size!! > 0) {
+                    mData = t.data
                     val data = t.data[0]
                     loadList(data)
                 }
@@ -50,6 +52,12 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
 
         }
         model.getIdList(callback)
+    }
+    override fun loadMore(index: Int) {
+        if(mData!=null){
+            val data = mData!![index]
+            loadList(data)
+        }
     }
 
     override fun loadList(data: String) {

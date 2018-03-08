@@ -12,4 +12,7 @@
     <color name="light_black">#455A64</color>
     <color name="light_yellow">#FFB74D</color>
     <color name="green">#26A69A</color>
+    <color name="transparent">#0000</color>
+    <color name="divider">#e6e6e6</color>
+    <color name="search_bg">#F1F8E9</color>
 </resources>

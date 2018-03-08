@@ -14,6 +14,8 @@ import com.ruheng.suiyue.book.BookPresenter
 import com.ruheng.suiyue.data.bean.Weather
 import com.ruheng.suiyue.movie.MovieFragment
 import com.ruheng.suiyue.movie.MoviePresenter
+import com.ruheng.suiyue.movie.SEARCH_TAG
+import com.ruheng.suiyue.movie.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var articleFragment: ArticleFragment
     private lateinit var bookFragment: BookFragment
     private lateinit var movieFragment: MovieFragment
+    private var searchFragment: SearchFragment? = null
     private lateinit var bookPresenter: BookPresenter
     private lateinit var moviePresenter: MoviePresenter
     private lateinit var articlePresenter: ArticlePresenter
@@ -39,8 +42,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         decorView.systemUiVisibility = uiOptions
         initFragment(savedInstanceState)
         setRadioButton()
+        setBarClick()
         EventBus.getDefault().register(this)
 
+    }
+
+    private fun setBarClick() {
+        iv_search.setOnClickListener {
+            if (iv_search.visibility == View.VISIBLE) {
+                if (searchFragment == null) {
+                    searchFragment = SearchFragment()
+                }
+                searchFragment?.show(fragmentManager, SEARCH_TAG)
+            }
+        }
     }
 
     private fun setRadioButton() {
@@ -85,7 +100,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onWeatherEvent(weather: Weather){
+    fun onWeatherEvent(weather: Weather) {
         val cityName = weather.cityName
         val climate = weather.climate
         val temperature = weather.temperature

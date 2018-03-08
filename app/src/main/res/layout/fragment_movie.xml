@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="8dp">
+    android:background="@color/white"
+    android:layout_marginTop="0.5dp"
+    android:paddingLeft="8dp">
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:text="影院热映"/>
         <TextView
             android:id="@+id/tv_online_all"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +46,7 @@
             android:text="院线即将上映"/>
         <TextView
             android:id="@+id/tv_coming_all"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +72,7 @@
             android:text="豆瓣 Top250"/>
         <TextView
             android:id="@+id/tv_top_all"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

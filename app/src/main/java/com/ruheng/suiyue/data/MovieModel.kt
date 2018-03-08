@@ -1,9 +1,25 @@
 package com.ruheng.suiyue.data
 
+import com.ruheng.suiyue.data.bean.MovieListBean
+import com.ruheng.suiyue.network.Api
+import com.ruheng.suiyue.network.Callback
 import com.ruheng.suiyue.network.OkhttpUtil
 
 /**
  * Created by lvruheng on 2018/3/5.
  */
 class MovieModel(okhttpUtil: OkhttpUtil) {
+    var mOkhttpUtil: OkhttpUtil = okhttpUtil
+    //上映的电影
+    var ONLINE_URL = "in_theaters"
+    //即将上映的电影
+    var COMING_URL = "coming_soon"
+    //top 250 电影
+    var TOP_URL = "top250"
+
+    fun getOnlineList(callback: Callback<MovieListBean>){
+        var url = Api.BASE_MOVIE_URL+ONLINE_URL
+        mOkhttpUtil.getDataAsync(url,callback)
+    }
+
 }

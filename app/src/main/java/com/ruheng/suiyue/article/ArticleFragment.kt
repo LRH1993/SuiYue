@@ -81,6 +81,9 @@ class ArticleFragment : BaseFragment(), ArticleContract.View, SwipeRefreshLayout
         //距离上次刷新超过6分钟，重新加载数据
         if (System.currentTimeMillis().minus(mLastRefreshTime) > 3600000) {
             mPresenter.start()
+            if (mList.size > 0) {
+                mList.clear()
+            }
         }
         mLastRefreshTime = System.currentTimeMillis()
     }
@@ -91,6 +94,9 @@ class ArticleFragment : BaseFragment(), ArticleContract.View, SwipeRefreshLayout
             //距离上次刷新超过6分钟，重新加载数据
             if (System.currentTimeMillis().minus(mLastRefreshTime) > 3600000) {
                 mPresenter.start()
+                if (mList.size > 0) {
+                    mList.clear()
+                }
             }
             mLastRefreshTime = System.currentTimeMillis()
         }

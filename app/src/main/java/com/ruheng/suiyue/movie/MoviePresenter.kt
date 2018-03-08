@@ -31,6 +31,7 @@ class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
                 model = MovieModel(okhttpUtil)
                 loadData()
                 loadComingList()
+                loadTopList()
             }
         }
     }
@@ -64,5 +65,20 @@ class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
 
         }
         model.getComingList(callback)
+    }
+
+    override fun loadTopList() {
+        var clazz = MovieListBean::class.java
+        var parser = GsonParser(clazz)
+        var callback: Callback<MovieListBean> = object : Callback<MovieListBean>(parser) {
+            override fun onResponse(t: MovieListBean) {
+                mView?.setTopList(t)
+            }
+
+            override fun onFailure(e: IOException) {
+            }
+
+        }
+        model.getTopList(callback)
     }
 }

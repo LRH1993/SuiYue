@@ -14,10 +14,12 @@ interface MovieContract {
         fun getBookContext(): Context?
         fun setOnlineList(movieListBean: MovieListBean)
         fun setComingList(movieListBean: MovieListBean)
+        fun setTopList(movieListBean: MovieListBean)
     }
 
     interface Presenter : BasePresenter {
         fun loadData()
         fun loadComingList()
+        fun loadTopList()
     }
 }

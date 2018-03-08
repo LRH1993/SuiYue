@@ -3,6 +3,8 @@ package com.ruheng.suiyue.movie
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MotionEvent
+import android.view.View
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
 import com.ruheng.suiyue.data.bean.MovieListBean
@@ -18,8 +20,10 @@ class MovieFragment : BaseFragment(), MovieContract.View {
     var mLastRefreshTime: Long = 0
     var mOnlineAdapter: OnlineAdapter? = null
     var mComingAdapter: ComingAdapter? = null
+    var mTopAdapter: TopAdapter? = null
     var mOnlineList = ArrayList<SubjectsItem>()
     var mComingList = ArrayList<SubjectsItem>()
+    var mTopList = ArrayList<SubjectsItem>()
     override fun getLayoutResources(): Int {
         return R.layout.fragment_movie
     }
@@ -35,8 +39,17 @@ class MovieFragment : BaseFragment(), MovieContract.View {
         rv_coming.layoutManager = comingLayoutManager
         mComingAdapter = ComingAdapter(context!!, mComingList)
         rv_coming.adapter = mComingAdapter
-    }
+        var topLayoutManager = LinearLayoutManager(context)
+        rv_top.layoutManager = topLayoutManager
+        mTopAdapter = TopAdapter(context!!, mTopList)
+        rv_top.adapter = mTopAdapter
+        rv_top.setOnTouchListener(object :View.OnTouchListener{
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+                TODO("滑动冲突解决")
+            }
 
+        })
+    }
     override fun onResume() {
         super.onResume()
         //距离上次刷新超过6分钟，重新加载数据
@@ -70,6 +83,19 @@ class MovieFragment : BaseFragment(), MovieContract.View {
             }
         }
         mComingAdapter?.notifyDataSetChanged()
+    }
+
+    override fun setTopList(movieListBean: MovieListBean) {
+        if (mTopList?.size!! > 0) {
+            mTopList?.clear()
+        }
+        movieListBean.subjects?.forEach {
+            //只展示5个Top 250电影
+            if (mTopList.size < 5) {
+                mTopList?.add(it)
+            }
+        }
+        mTopAdapter?.notifyDataSetChanged()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

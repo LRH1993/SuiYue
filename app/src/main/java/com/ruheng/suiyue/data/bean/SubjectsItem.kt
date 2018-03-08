@@ -18,6 +18,8 @@ data class SubjectsItem(@SerializedName("images")
                         val alt: String = "",
                         @SerializedName("id")
                         val id: String = "",
+                        @SerializedName("casts")
+                        val casts: List<Cast>?,
                         @SerializedName("title")
                         val title: String = "",
                         @SerializedName("collect_count")

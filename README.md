@@ -53,7 +53,7 @@
 | https://api.douban.com/v2/movie/subject/:id/comments | 🎬影评信息，其中:id可以替换成🎬id |
 | https://api.douban.com/v2/movie/coming_soon | 即将上映的🎬               |
 | http://api.douban.com/v2/movie/subject/:id/photos | 🎬剧照，其中:id可以替换成🎬id   |
-| http://api.douban.com/v2/v2/movie/top250 | Top250🎬              |
+| http://api.douban.com/v2/movie/top250    | Top250🎬              |
 
 ## 三、技术点
 
@@ -73,7 +73,7 @@
 
 ## 五、输出
 
-学习输出…...
+[从google todo-mvp示例再次学习MVP](https://juejin.im/post/5a9654f86fb9a0634a39450e)
 
 
 

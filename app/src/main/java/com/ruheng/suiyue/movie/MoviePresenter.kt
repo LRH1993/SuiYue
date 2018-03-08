@@ -12,12 +12,14 @@ import java.io.IOException
  * Created by lvruheng on 2018/3/1.
  */
 class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
+
     override fun detachView() {
         mView = null
     }
 
     var mView: MovieContract.View? = view
-    private lateinit var model:MovieModel
+    private lateinit var model: MovieModel
+
     init {
         view.setPresenter(this)
     }
@@ -28,6 +30,7 @@ class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
                 val okhttpUtil = OkhttpUtil.getInstance(mView?.getBookContext()!!)
                 model = MovieModel(okhttpUtil)
                 loadData()
+                loadComingList()
             }
         }
     }
@@ -46,5 +49,20 @@ class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
         }
         model.getOnlineList(callback)
 
+    }
+
+    override fun loadComingList() {
+        var clazz = MovieListBean::class.java
+        var parser = GsonParser(clazz)
+        var callback: Callback<MovieListBean> = object : Callback<MovieListBean>(parser) {
+            override fun onResponse(t: MovieListBean) {
+                mView?.setComingList(t)
+            }
+
+            override fun onFailure(e: IOException) {
+            }
+
+        }
+        model.getComingList(callback)
     }
 }

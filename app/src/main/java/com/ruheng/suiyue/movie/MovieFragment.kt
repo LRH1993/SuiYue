@@ -16,18 +16,25 @@ class MovieFragment : BaseFragment(), MovieContract.View {
 
     lateinit var mPresenter: MoviePresenter
     var mLastRefreshTime: Long = 0
-    var mAdapter: OnlineAdapter? = null
+    var mOnlineAdapter: OnlineAdapter? = null
+    var mComingAdapter: ComingAdapter? = null
     var mOnlineList = ArrayList<SubjectsItem>()
+    var mComingList = ArrayList<SubjectsItem>()
     override fun getLayoutResources(): Int {
         return R.layout.fragment_movie
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        var layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        rv_online.layoutManager = layoutManager
-        mAdapter = OnlineAdapter(context!!, mOnlineList)
-        rv_online.adapter = mAdapter
+        var onlineLayoutManager = LinearLayoutManager(context)
+        onlineLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        rv_online.layoutManager = onlineLayoutManager
+        mOnlineAdapter = OnlineAdapter(context!!, mOnlineList)
+        rv_online.adapter = mOnlineAdapter
+        var comingLayoutManager = LinearLayoutManager(context)
+        comingLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        rv_coming.layoutManager = comingLayoutManager
+        mComingAdapter = ComingAdapter(context!!, mComingList)
+        rv_coming.adapter = mComingAdapter
     }
 
     override fun onResume() {
@@ -49,7 +56,20 @@ class MovieFragment : BaseFragment(), MovieContract.View {
                 mOnlineList?.add(it)
             }
         }
-        mAdapter?.notifyDataSetChanged()
+        mOnlineAdapter?.notifyDataSetChanged()
+    }
+
+    override fun setComingList(movieListBean: MovieListBean) {
+        if (mComingList?.size!! > 0) {
+            mComingList?.clear()
+        }
+        movieListBean.subjects?.forEach {
+            //只展示8个即将上映电影
+            if (mComingList.size < 8) {
+                mComingList?.add(it)
+            }
+        }
+        mComingAdapter?.notifyDataSetChanged()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

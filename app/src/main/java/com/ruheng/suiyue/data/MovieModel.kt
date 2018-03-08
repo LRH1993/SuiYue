@@ -21,5 +21,8 @@ class MovieModel(okhttpUtil: OkhttpUtil) {
         var url = Api.BASE_MOVIE_URL+ONLINE_URL
         mOkhttpUtil.getDataAsync(url,callback)
     }
-
+    fun getComingList(callback: Callback<MovieListBean>){
+        var url = Api.BASE_MOVIE_URL+COMING_URL
+        mOkhttpUtil.getDataAsync(url,callback)
+    }
 }

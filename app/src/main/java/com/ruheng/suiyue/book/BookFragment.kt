@@ -41,14 +41,6 @@ class BookFragment : BaseFragment(), BookContract.View {
         rv_book.adapter = mAdapter
     }
 
-    override fun onResume() {
-        super.onResume()
-        //距离上次刷新超过6分钟，重新加载数据
-        if (System.currentTimeMillis().minus(mLastRefreshTime) > 3600000) {
-            mPresenter.start()
-        }
-        mLastRefreshTime = System.currentTimeMillis()
-    }
 
     override fun getLayoutResources(): Int {
         return R.layout.fragment_book

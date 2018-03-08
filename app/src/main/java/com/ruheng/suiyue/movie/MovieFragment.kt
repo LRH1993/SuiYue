@@ -3,8 +3,6 @@ package com.ruheng.suiyue.movie
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.MotionEvent
-import android.view.View
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
 import com.ruheng.suiyue.data.bean.MovieListBean
@@ -43,22 +41,8 @@ class MovieFragment : BaseFragment(), MovieContract.View {
         rv_top.layoutManager = topLayoutManager
         mTopAdapter = TopAdapter(context!!, mTopList)
         rv_top.adapter = mTopAdapter
-        rv_top.setOnTouchListener(object :View.OnTouchListener{
-            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
-                TODO("滑动冲突解决")
-            }
-
-        })
+        //todo 滑动冲突
     }
-    override fun onResume() {
-        super.onResume()
-        //距离上次刷新超过6分钟，重新加载数据
-        if (System.currentTimeMillis().minus(mLastRefreshTime) > 3600000) {
-            mPresenter.start()
-        }
-        mLastRefreshTime = System.currentTimeMillis()
-    }
-
     override fun setOnlineList(movieListBean: MovieListBean) {
         if (mOnlineList?.size!! > 0) {
             mOnlineList?.clear()

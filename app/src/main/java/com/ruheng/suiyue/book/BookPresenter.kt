@@ -6,14 +6,13 @@ import com.ruheng.suiyue.network.Callback
 import com.ruheng.suiyue.network.GsonParser
 import com.ruheng.suiyue.network.OkhttpUtil
 import java.io.IOException
-import java.util.*
 
 /**
  * Created by lvruheng on 2018/3/1.
  */
 class BookPresenter(view: BookContract.View) : BookContract.Presenter {
 
-    private var index: Int = Random().nextInt(200)+1
+    private var index: Int = 1
     override fun detachView() {
         mView = null
     }
@@ -53,6 +52,7 @@ class BookPresenter(view: BookContract.View) : BookContract.Presenter {
 
 
     }
+
     override fun refreshData() {
         mView?.startFloatAnim()
         var clazz = BookListBean::class.java

@@ -37,14 +37,18 @@ class BookAdapter(context: Context, booksList: MutableList<BooksItem>?) : Recycl
         val desc = bean?.summary
         holder.tv_title?.text = title
         holder.tv_desc?.text = desc
-        if(price=="￥"){
+        if (price == "￥") {
             holder.tv_price?.text = "价格不详"
-        }else{
+        } else {
             holder.tv_price?.text = price
         }
 
         holder.tv_rating_count?.text = "$rating_count 评价"
-        holder.tv_subtitle?.text = subtitle
+        if (subtitle == "") {
+            holder.tv_subtitle?.visibility = View.GONE
+        } else {
+            holder.tv_subtitle?.text = subtitle
+        }
         holder.rt_rating?.rating = rating?.toFloat()!! / 2
         holder.tv_rating?.text = rating
         holder.sv_photo?.setImageURI(image)

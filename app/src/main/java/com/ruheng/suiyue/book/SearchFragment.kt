@@ -1,4 +1,4 @@
-package com.ruheng.suiyue.movie
+package com.ruheng.suiyue.book
 
 import android.app.DialogFragment
 import android.content.DialogInterface
@@ -9,7 +9,7 @@ import com.ruheng.suiyue.util.KeyBoardUtils
 import kotlinx.android.synthetic.main.fragment_search.*
 
 /**
- * Created by lvruheng on 2018/3/8.
+ * Created by lvruheng on 2018/3/9.
  */
 const val SEARCH_TAG = "SearchFragment"
 

@@ -11,11 +11,11 @@ import com.ruheng.suiyue.article.ArticleFragment
 import com.ruheng.suiyue.article.ArticlePresenter
 import com.ruheng.suiyue.book.BookFragment
 import com.ruheng.suiyue.book.BookPresenter
+import com.ruheng.suiyue.book.SEARCH_TAG
+import com.ruheng.suiyue.book.SearchFragment
 import com.ruheng.suiyue.data.bean.Weather
 import com.ruheng.suiyue.movie.MovieFragment
 import com.ruheng.suiyue.movie.MoviePresenter
-import com.ruheng.suiyue.movie.SEARCH_TAG
-import com.ruheng.suiyue.movie.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

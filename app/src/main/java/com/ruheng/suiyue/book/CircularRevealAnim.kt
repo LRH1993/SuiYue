@@ -1,4 +1,4 @@
-package com.ruheng.suiyue.movie
+package com.ruheng.suiyue.book
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

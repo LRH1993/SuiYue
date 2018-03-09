@@ -3,9 +3,12 @@ package com.ruheng.suiyue.book
 import android.app.DialogFragment
 import android.content.DialogInterface
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.util.KeyBoardUtils
+import com.ruheng.suiyue.util.SPUtils
 import kotlinx.android.synthetic.main.fragment_search.*
 
 /**
@@ -18,6 +21,11 @@ class SearchFragment : DialogFragment(), CircularRevealAnim.AnimListener,
         View.OnClickListener {
     private lateinit var mRootView: View
     private lateinit var mCircularRevealAnim: CircularRevealAnim
+    private lateinit var mHotAdapter: HotAdapter
+    private lateinit var mHistoryAdapter: HistoryAdapter
+    var mHistorySet = HashSet<String>()
+    var mHistoryList = ArrayList<String>()
+    var mHotList = listOf<String>("解忧杂货店", "三体", "万历十五年", "活着", "摆渡人", "我们仨", "天才在左 疯子在右", "恋情的终结", "房思琪的初恋乐园")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogStyle)
@@ -56,6 +64,33 @@ class SearchFragment : DialogFragment(), CircularRevealAnim.AnimListener,
         iv_search.viewTreeObserver.addOnPreDrawListener(this)
         iv_search.setOnClickListener(this)
         iv_search_back.setOnClickListener(this)
+        rv_hot.layoutManager = LinearLayoutManager(activity)
+        mHotAdapter = HotAdapter(activity, mHotList)
+        rv_hot.adapter = mHotAdapter
+        setHistory()
+
+    }
+
+    /**
+     * 初始化历史搜索记录
+     */
+    private fun setHistory() {
+        val historySet = SPUtils.getInstance(activity, "book").getStringSet("history", mHistorySet)
+        if (historySet.isEmpty()) {
+            rl_history.visibility = View.GONE
+            rv_history.visibility = View.GONE
+        } else {
+            rl_history.visibility = View.VISIBLE
+            rv_history.visibility = View.VISIBLE
+            mHistoryList.clear()
+            historySet.forEach {
+                mHistoryList.add(it)
+            }
+            rv_history.layoutManager = GridLayoutManager(activity, 2)
+            mHistoryAdapter = HistoryAdapter(activity, mHistoryList)
+            rv_history.adapter = mHistoryAdapter
+            tv_history_clear.setOnClickListener(this)
+        }
     }
 
 
@@ -69,7 +104,9 @@ class SearchFragment : DialogFragment(), CircularRevealAnim.AnimListener,
     }
 
     private fun search() {
-
+        var set = setOf<String>(et_search_keyword.text.toString())
+        SPUtils.getInstance(activity, "book").put("history", set)
+        et_search_keyword.setText("")
     }
 
     private fun hideAnim() {
@@ -101,6 +138,13 @@ class SearchFragment : DialogFragment(), CircularRevealAnim.AnimListener,
             }
             R.id.iv_search -> {
                 search()
+            }
+            R.id.tv_history_clear -> {
+                SPUtils.getInstance(activity, "book").remove("history")
+                mHistoryList.clear()
+                rv_history.adapter.notifyDataSetChanged()
+                rl_history.visibility = View.GONE
+                rv_history.visibility = View.GONE
             }
         }
     }

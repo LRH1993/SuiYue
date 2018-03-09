@@ -62,6 +62,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_history_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

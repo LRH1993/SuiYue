@@ -111,7 +111,7 @@ class ArticleFragment : BaseFragment(), ArticleContract.View, SwipeRefreshLayout
         return isAdded
     }
 
-    override fun getBookContext(): Context? {
+    override fun getArticleContext(): Context? {
         return if (isActive()) {
             context
         } else {

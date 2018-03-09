@@ -11,7 +11,7 @@ import com.ruheng.suiyue.data.bean.OneListBean
 interface ArticleContract {
     interface View : BaseView<Presenter> {
         fun isActive(): Boolean
-        fun getBookContext(): Context?
+        fun getArticleContext(): Context?
         fun setOneList(oneListBean: OneListBean)
     }
 

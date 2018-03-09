@@ -8,6 +8,8 @@ data class BooksItem(@SerializedName("origin_title")
                      val summary: String = "",
                      @SerializedName("image")
                      val image: String = "",
+                     @SerializedName("images")
+                     val images: Images?,
                      @SerializedName("author")
                      val author: List<String>?,
                      @SerializedName("catalog")

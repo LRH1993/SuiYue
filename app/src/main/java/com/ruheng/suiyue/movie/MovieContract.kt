@@ -11,7 +11,7 @@ import com.ruheng.suiyue.data.bean.MovieListBean
 interface MovieContract {
     interface View : BaseView<Presenter> {
         fun isActive(): Boolean
-        fun getBookContext(): Context?
+        fun getMovieContext(): Context?
         fun setOnlineList(movieListBean: MovieListBean)
         fun setComingList(movieListBean: MovieListBean)
         fun setTopList(movieListBean: MovieListBean)

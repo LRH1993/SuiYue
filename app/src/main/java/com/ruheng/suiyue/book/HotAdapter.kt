@@ -27,7 +27,7 @@ class HotAdapter(context: Context, booksList: List<String>) : RecyclerView.Adapt
         holder?.tv_book_rank?.text = (position + 1).toString()
         holder?.tv_book_name?.text = bean
         holder?.itemView?.setOnClickListener{
-            //跳转到搜索结果页面
+            //跳转到书籍详情页面
             var intent = Intent(context, SearchResultActivity::class.java)
             intent.putExtra("keyWord", bean)
             context?.startActivity(intent)

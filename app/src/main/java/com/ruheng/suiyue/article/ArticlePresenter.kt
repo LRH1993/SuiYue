@@ -28,7 +28,7 @@ class ArticlePresenter(view: ArticleContract.View) : ArticleContract.Presenter {
     override fun start() {
         mView?.let {
             if (mView!!.isActive()) {
-                val okhttpUtil = OkhttpUtil.getInstance(mView?.getBookContext()!!)
+                val okhttpUtil = OkhttpUtil.getInstance(mView?.getArticleContext()!!)
                 model = ArticleModel(okhttpUtil)
                 loadData()
             }

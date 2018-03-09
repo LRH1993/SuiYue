@@ -15,4 +15,7 @@
     <color name="transparent">#0000</color>
     <color name="divider">#e6e6e6</color>
     <color name="search_bg">#F1F8E9</color>
+    <color name="detail_bg">#C5E1A5</color>
+    <color name="intro_bg">#F1F8E9</color>
+    <color name="light_white">#F5F5F5</color>
 </resources>

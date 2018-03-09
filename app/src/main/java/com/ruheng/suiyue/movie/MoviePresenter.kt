@@ -27,7 +27,7 @@ class MoviePresenter(view: MovieContract.View) : MovieContract.Presenter {
     override fun start() {
         mView?.let {
             if (mView!!.isActive()) {
-                val okhttpUtil = OkhttpUtil.getInstance(mView?.getBookContext()!!)
+                val okhttpUtil = OkhttpUtil.getInstance(mView?.getMovieContext()!!)
                 model = MovieModel(okhttpUtil)
                 loadData()
                 loadComingList()

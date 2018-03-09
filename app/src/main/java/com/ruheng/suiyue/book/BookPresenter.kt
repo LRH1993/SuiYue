@@ -13,7 +13,7 @@ import java.util.*
  */
 class BookPresenter(view: BookContract.View) : BookContract.Presenter {
 
-    private var index: Int = Random().nextInt(200)
+    private var index: Int = Random().nextInt(200)+1
     override fun detachView() {
         mView = null
     }

@@ -1,6 +1,7 @@
 package com.ruheng.suiyue.book
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -36,12 +37,22 @@ class BookAdapter(context: Context, booksList: MutableList<BooksItem>?) : Recycl
         val desc = bean?.summary
         holder.tv_title?.text = title
         holder.tv_desc?.text = desc
-        holder.tv_price?.text = price
+        if(price=="￥"){
+            holder.tv_price?.text = "价格不详"
+        }else{
+            holder.tv_price?.text = price
+        }
+
         holder.tv_rating_count?.text = "$rating_count 评价"
         holder.tv_subtitle?.text = subtitle
         holder.rt_rating?.rating = rating?.toFloat()!! / 2
         holder.tv_rating?.text = rating
         holder.sv_photo?.setImageURI(image)
+        holder.cv_root?.setOnClickListener {
+            var intent = Intent(context, BookDetailActivity::class.java)
+            intent.putExtra("ibsn", bean?.isbn13)
+            context?.startActivity(intent)
+        }
 
 
     }
@@ -64,6 +75,7 @@ class BookAdapter(context: Context, booksList: MutableList<BooksItem>?) : Recycl
         var tv_rating: TextView? = null
         var tv_rating_count: TextView? = null
         var rt_rating: MaterialRatingBar? = null
+
 
         init {
             cv_root = itemView?.findViewById(R.id.cv_root)

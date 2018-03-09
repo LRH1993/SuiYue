@@ -102,7 +102,7 @@ class MovieFragment : BaseFragment(), MovieContract.View {
         return isAdded
     }
 
-    override fun getBookContext(): Context? {
+    override fun getMovieContext(): Context? {
         return if (isActive()) {
             context
         } else {

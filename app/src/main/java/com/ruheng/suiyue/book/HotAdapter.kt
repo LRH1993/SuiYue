@@ -1,6 +1,7 @@
 package com.ruheng.suiyue.book
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,12 @@ class HotAdapter(context: Context, booksList: List<String>) : RecyclerView.Adapt
         val bean = list?.get(position)
         holder?.tv_book_rank?.text = (position + 1).toString()
         holder?.tv_book_name?.text = bean
+        holder?.itemView?.setOnClickListener{
+            //跳转到搜索结果页面
+            var intent = Intent(context, SearchResultActivity::class.java)
+            intent.putExtra("keyWord", bean)
+            context?.startActivity(intent)
+        }
 
     }
 

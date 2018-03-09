@@ -2,10 +2,13 @@ package com.ruheng.suiyue.book
 
 import android.app.DialogFragment
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.text.TextUtils
 import android.view.*
+import android.widget.Toast
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.util.KeyBoardUtils
 import com.ruheng.suiyue.util.SPUtils
@@ -104,9 +107,20 @@ class SearchFragment : DialogFragment(), CircularRevealAnim.AnimListener,
     }
 
     private fun search() {
-        var set = setOf<String>(et_search_keyword.text.toString())
-        SPUtils.getInstance(activity, "book").put("history", set)
-        et_search_keyword.setText("")
+        val searchKey = et_search_keyword.text.toString()
+        if (TextUtils.isEmpty(searchKey.trim({ it <= ' ' }))) {
+            Toast.makeText(activity, "请输入关键字", Toast.LENGTH_SHORT).show()
+        } else {
+            var set = setOf<String>(et_search_keyword.text.toString())
+            SPUtils.getInstance(activity, "book").put("history", set)
+            et_search_keyword.setText("")
+            hideAnim()
+            //跳转到搜索结果页面
+            var keyWord = et_search_keyword.text.toString().trim()
+            var intent = Intent(activity, SearchResultActivity::class.java)
+            intent.putExtra("keyWord", keyWord)
+            activity?.startActivity(intent)
+        }
     }
 
     private fun hideAnim() {

@@ -1,18 +1,17 @@
 package com.ruheng.suiyue
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import com.google.zxing.integration.android.IntentIntegrator
 import com.gyf.barlibrary.ImmersionBar
 import com.ruheng.suiyue.article.ArticleFragment
 import com.ruheng.suiyue.article.ArticlePresenter
-import com.ruheng.suiyue.book.BookFragment
-import com.ruheng.suiyue.book.BookPresenter
-import com.ruheng.suiyue.book.SEARCH_TAG
-import com.ruheng.suiyue.book.SearchFragment
+import com.ruheng.suiyue.book.*
 import com.ruheng.suiyue.data.bean.Weather
 import com.ruheng.suiyue.movie.MovieFragment
 import com.ruheng.suiyue.movie.MoviePresenter
@@ -56,6 +55,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 searchFragment?.show(fragmentManager, SEARCH_TAG)
             }
         }
+        var integrator = IntentIntegrator(this)
+        integrator.setOrientationLocked(false)
+        iv_scan.setOnClickListener {
+            if (iv_scan.visibility == View.VISIBLE) {
+                integrator.initiateScan()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val parseActivityResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (parseActivityResult != null) {
+            if (parseActivityResult.contents != null) {
+                var intent = Intent(this, BookDetailActivity::class.java)
+                intent.putExtra("ibsn", parseActivityResult.contents)
+                startActivity(intent)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+
     }
 
     private fun setRadioButton() {

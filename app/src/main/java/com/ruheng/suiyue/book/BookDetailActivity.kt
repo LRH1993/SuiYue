@@ -36,7 +36,7 @@ class BookDetailActivity : AppCompatActivity(), BookDetailContract.View {
     }
 
 
-    override fun getBookContext(): Context? {
+    override fun getDetailContext(): Context? {
         return this
     }
 

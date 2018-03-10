@@ -13,6 +13,7 @@ class BookModel(okhttpUtil: OkhttpUtil) {
     var mOkhttpUtil: OkhttpUtil = okhttpUtil
     var BOOK_LIST_URL = "series/id/books"
     var BOOK_DETAIL_URL = "isbn/name"
+    var BOOK_SEARCH_URL = "search?q="
     fun getBookList(id: Int, callback: Callback<BookListBean>) {
         val url = Api.BASE_BOOK_URL + BOOK_LIST_URL.replace("id", id.toString(), false)
         mOkhttpUtil.getDataAsync(url, callback)
@@ -20,6 +21,11 @@ class BookModel(okhttpUtil: OkhttpUtil) {
 
     fun getBookDetail(ibsn: String, callback: Callback<BooksItem>) {
         val url = Api.BASE_BOOK_URL + BOOK_DETAIL_URL.replace("name", ibsn, false)
+        mOkhttpUtil.getDataAsync(url, callback)
+    }
+
+    fun getSearchList(keyword: String, callback: Callback<BookListBean>) {
+        val url = Api.BASE_BOOK_URL + BOOK_SEARCH_URL + keyword
         mOkhttpUtil.getDataAsync(url, callback)
     }
 }

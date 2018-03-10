@@ -29,6 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:gravity="center"
+                android:maxLength="15"
                 android:textColor="@color/light_white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -84,28 +85,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxWidth="250dp"
                 android:padding="10dp"
                 android:textColor="@color/light_black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:maxWidth="200dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 android:id="@+id/tv_detail_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxWidth="200dp"
                 android:paddingLeft="10dp"
                 android:textColor="@color/gray" />
 
             <TextView
-                android:maxWidth="200dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 android:id="@+id/tv_detail_publish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxWidth="200dp"
                 android:paddingLeft="10dp"
                 android:textColor="@color/gray" />
 

@@ -3,19 +3,19 @@ package com.ruheng.suiyue.book
 import android.content.Context
 import com.ruheng.suiyue.base.BasePresenter
 import com.ruheng.suiyue.base.BaseView
-import com.ruheng.suiyue.data.bean.BooksItem
+import com.ruheng.suiyue.data.bean.BookListBean
 
 /**
  * Created by lvruheng on 2018/3/1.
  */
-interface BookDetailContract {
+interface SearchResultContract {
     interface View : BaseView<Presenter> {
-        fun getDetailContext(): Context?
-        fun setBook(booksItem: BooksItem)
+        fun getSearchContext(): Context?
+        fun setBookList(bookListBean: BookListBean)
     }
 
     interface Presenter : BasePresenter {
-        fun start(ibsn: String)
-        fun loadData(ibsn: String)
+        fun start(keyword: String)
+        fun loadData(keyword: String)
     }
 }

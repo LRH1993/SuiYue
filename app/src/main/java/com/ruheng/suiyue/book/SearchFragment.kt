@@ -113,10 +113,8 @@ class SearchFragment : DialogFragment(), CircularRevealAnim.AnimListener,
         } else {
             var set = setOf<String>(et_search_keyword.text.toString())
             SPUtils.getInstance(activity, "book").put("history", set)
-            et_search_keyword.setText("")
-            hideAnim()
             //跳转到搜索结果页面
-            var keyWord = et_search_keyword.text.toString().trim()
+            var keyWord = et_search_keyword.text.toString()
             var intent = Intent(activity, SearchResultActivity::class.java)
             intent.putExtra("keyWord", keyWord)
             activity?.startActivity(intent)

@@ -16,6 +16,8 @@ class HotAdapter(context: Context, booksList: List<String>) : RecyclerView.Adapt
     var context: Context? = context
     var list: List<String>? = null
     var inflater: LayoutInflater? = null
+    //热门搜索 固定假数据
+    var ibsnList = listOf<String>("9787544270878", "9787536692930", "9787108009821", "9787544210966", "9787550013247", "9787108018809", "9787550263932", "9787539979410", "9789869236478")
 
     init {
         this.inflater = LayoutInflater.from(context)
@@ -26,10 +28,10 @@ class HotAdapter(context: Context, booksList: List<String>) : RecyclerView.Adapt
         val bean = list?.get(position)
         holder?.tv_book_rank?.text = (position + 1).toString()
         holder?.tv_book_name?.text = bean
-        holder?.itemView?.setOnClickListener{
+        holder?.itemView?.setOnClickListener {
             //跳转到书籍详情页面
-            var intent = Intent(context, SearchResultActivity::class.java)
-            intent.putExtra("keyWord", bean)
+            var intent = Intent(context, BookDetailActivity::class.java)
+            intent.putExtra("ibsn", ibsnList[position])
             context?.startActivity(intent)
         }
 

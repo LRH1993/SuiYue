@@ -1,8 +1,10 @@
 package com.ruheng.suiyue.movie
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.base.BaseFragment
 import com.ruheng.suiyue.data.bean.MovieListBean
@@ -12,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_movie.*
 /**
  * Created by lvruheng on 2018/2/28.
  */
-class MovieFragment : BaseFragment(), MovieContract.View {
+class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
 
     lateinit var mPresenter: MoviePresenter
     var mLastRefreshTime: Long = 0
@@ -22,11 +24,17 @@ class MovieFragment : BaseFragment(), MovieContract.View {
     var mOnlineList = ArrayList<SubjectsItem>()
     var mComingList = ArrayList<SubjectsItem>()
     var mTopList = ArrayList<SubjectsItem>()
+    var mAllOnlineList = ArrayList<SubjectsItem>()
+    var mAllComingList = ArrayList<SubjectsItem>()
+    var mAllTopList = ArrayList<SubjectsItem>()
     override fun getLayoutResources(): Int {
         return R.layout.fragment_movie
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        tv_coming_all.setOnClickListener(this)
+        tv_online_all.setOnClickListener(this)
+        tv_top_all.setOnClickListener(this)
         var onlineLayoutManager = LinearLayoutManager(context)
         onlineLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         rv_online.layoutManager = onlineLayoutManager
@@ -43,6 +51,7 @@ class MovieFragment : BaseFragment(), MovieContract.View {
         rv_top.adapter = mTopAdapter
         //todo 滑动冲突
     }
+
     override fun setOnlineList(movieListBean: MovieListBean) {
         if (mOnlineList?.size!! > 0) {
             mOnlineList?.clear()
@@ -52,6 +61,7 @@ class MovieFragment : BaseFragment(), MovieContract.View {
             if (mOnlineList.size < 6) {
                 mOnlineList?.add(it)
             }
+            mAllOnlineList?.add(it)
         }
         mOnlineAdapter?.notifyDataSetChanged()
     }
@@ -65,6 +75,7 @@ class MovieFragment : BaseFragment(), MovieContract.View {
             if (mComingList.size < 8) {
                 mComingList?.add(it)
             }
+            mAllComingList?.add(it)
         }
         mComingAdapter?.notifyDataSetChanged()
     }
@@ -78,6 +89,7 @@ class MovieFragment : BaseFragment(), MovieContract.View {
             if (mTopList.size < 5) {
                 mTopList?.add(it)
             }
+            mAllTopList?.add(it)
         }
         mTopAdapter?.notifyDataSetChanged()
     }
@@ -97,6 +109,29 @@ class MovieFragment : BaseFragment(), MovieContract.View {
         mPresenter = presenter as MoviePresenter
     }
 
+    override fun onClick(view: View?) {
+        var intent = Intent(activity, MovieListActivity::class.java)
+        when (view?.id) {
+
+            R.id.tv_online_all -> {
+                intent.putExtra("title", "影院热映")
+                intent.putExtra("list", mAllOnlineList)
+            }
+
+            R.id.tv_coming_all -> {
+                intent.putExtra("title", "院线即将上映")
+                intent.putExtra("list", mAllComingList)
+            }
+
+            R.id.tv_top_all -> {
+                intent.putExtra("title", "豆瓣 Top250")
+                intent.putExtra("list", mAllTopList)
+            }
+
+        }
+        context?.startActivity(intent)
+
+    }
 
     override fun isActive(): Boolean {
         return isAdded

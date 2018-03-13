@@ -38,18 +38,36 @@ class TopAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : Recy
                 .asSequence()
                 .takeWhile { it <= 2 }
                 .forEach { castStr = castStr + " / " + casts[it].name }
-        castStr = castStr.substring(3)
+        if (castStr != "") {
+            castStr = castStr.substring(3)
+            holder?.tv_casts?.visibility = View.VISIBLE
+            holder?.tv_casts?.text = castStr
+        } else {
+            holder?.tv_casts?.visibility = View.GONE
+        }
         genres!!.indices
                 .asSequence()
                 .takeWhile { it <= 2 }
                 .forEach { genreStr = genreStr + " / " + genres[it] }
         holder.tv_title?.text = title
         holder.sv_photo?.setImageURI(imgUrl)
-        holder?.rt_rating?.rating = rating?.toFloat()!! / 2
-        holder?.tv_rating?.text = rating.toString()
+        if (rating == 0.0) {
+            holder?.rt_rating?.visibility = View.GONE
+            holder?.tv_rating?.text = "暂无评分"
+        } else {
+            holder?.rt_rating?.visibility = View.VISIBLE
+            holder?.rt_rating?.rating = rating?.toFloat()!! / 2
+            holder?.tv_rating?.text = rating.toString()
+        }
         holder?.tv_geners?.text = genreStr
         holder?.tv_casts?.text = castStr
-        holder?.tv_rank?.text = (position+1).toString()
+        if (list?.size!! > 8) {
+            holder?.tv_rank?.visibility = View.GONE
+        } else {
+            holder?.tv_rank?.visibility = View.VISIBLE
+            holder?.tv_rank?.text = (position + 1).toString()
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopViewHolder {

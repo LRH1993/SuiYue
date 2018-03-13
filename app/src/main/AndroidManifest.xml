@@ -32,6 +32,7 @@
             android:screenOrientation="portrait"
             tools:replace="screenOrientation"></activity>
         <activity android:name=".book.BookDetailActivity"></activity>
+        <activity android:name=".movie.MovieListActivity"></activity>
 
     </application>
 

@@ -15,11 +15,8 @@
 | url                                      | 描述                                |
 | ---------------------------------------- | --------------------------------- |
 | https://api.douban.com/v2/book/series/:id/books | 获取一系列📚 其中:id可以替换成任意数字            |
-| https://api.douban.com/v2/book/:id       | 获取📚详细信息，其中:id可以替换成📚的id          |
 | https://api.douban.com/v2/book/isbn/:name | 根据isbn获取📚详细信息，其中:name可以替换成isbn号码 |
 | https://api.douban.com/v2/book/search    | 搜索📚，可以设置参数搜索相关📚                 |
-| https://api.douban.com/v2/book/:id/tags  | 获取📚的相关标签，其中:id可以替换成📚的id         |
-| https://api.douban.com/v2/book/:id/reviews | 获取📚的短评信息，其中:id可以替换成📚的id         |
 
 其中，关于搜索的具体参数设置如下：
 
@@ -49,10 +46,7 @@
 | ---------------------------------------- | --------------------- |
 | https://api.douban.com/v2/movie/in_theaters | 上映的🎬                 |
 | http://api.douban.com/v2/movie/subject/:id | 🎬详情信息，其中:id可以替换成🎬id |
-| https://api.douban.com/v2/movie/subject/:id/reviews | 🎬短评信息，其中:id可以替换成🎬id |
-| https://api.douban.com/v2/movie/subject/:id/comments | 🎬影评信息，其中:id可以替换成🎬id |
 | https://api.douban.com/v2/movie/coming_soon | 即将上映的🎬               |
-| http://api.douban.com/v2/movie/subject/:id/photos | 🎬剧照，其中:id可以替换成🎬id   |
 | http://api.douban.com/v2/movie/top250    | Top250🎬              |
 
 ## 三、技术点

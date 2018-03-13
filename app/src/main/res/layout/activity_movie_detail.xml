@@ -104,16 +104,6 @@
                 android:textColor="@color/gray" />
 
             <TextView
-                android:id="@+id/tv_detail_publish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:maxWidth="200dp"
-                android:paddingLeft="10dp"
-                android:textColor="@color/gray" />
-
-            <TextView
                 android:id="@+id/tv_detail_geners"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

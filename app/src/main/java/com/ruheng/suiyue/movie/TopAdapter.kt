@@ -2,6 +2,7 @@ package com.ruheng.suiyue.movie
 
 import android.content.Context
 import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -74,6 +75,11 @@ class TopAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : Recy
             intent.putExtra("id", bean?.id)
             context?.startActivity(intent)
         }
+        holder.cv_root?.setOnClickListener {
+            var intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra("id", bean?.id)
+            context?.startActivity(intent)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopViewHolder {
@@ -93,8 +99,10 @@ class TopAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : Recy
         var tv_casts: TextView? = null
         var tv_rank: TextView? = null
         var ll_root: LinearLayout? = null
+        var cv_root: CardView? = null
 
         init {
+            cv_root = itemView?.findViewById(R.id.cv_root)
             ll_root = itemView?.findViewById(R.id.ll_root)
             sv_photo = itemView?.findViewById(R.id.sv_top_photo)
             tv_title = itemView?.findViewById(R.id.tv_top_title)

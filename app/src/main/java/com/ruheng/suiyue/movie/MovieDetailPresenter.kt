@@ -1,6 +1,6 @@
 package com.ruheng.suiyue.movie
 
-import com.ruheng.suiyue.data.BookModel
+import com.ruheng.suiyue.data.MovieModel
 import com.ruheng.suiyue.data.bean.MovieDetailBean
 import com.ruheng.suiyue.network.Callback
 import com.ruheng.suiyue.network.GsonParser
@@ -11,11 +11,11 @@ import java.io.IOException
  * Created by lvruheng on 2018/3/1.
  */
 class MovieDetailPresenter(view: MovieDetailContract.View) : MovieDetailContract.Presenter {
-    override fun start(ibsn: String) {
+    override fun start(id: String) {
         mView?.let {
             val okhttpUtil = OkhttpUtil.getInstance(mView?.getDetailContext()!!)
-            model = BookModel(okhttpUtil)
-            loadData(ibsn)
+            model = MovieModel(okhttpUtil)
+            loadData(id)
         }
     }
 
@@ -24,7 +24,7 @@ class MovieDetailPresenter(view: MovieDetailContract.View) : MovieDetailContract
     }
 
     var mView: MovieDetailContract.View? = view
-    private lateinit var model: BookModel
+    private lateinit var model: MovieModel
 
     init {
         view.setPresenter(this)
@@ -34,7 +34,7 @@ class MovieDetailPresenter(view: MovieDetailContract.View) : MovieDetailContract
 
     }
 
-    override fun loadData(ibsn: String) {
+    override fun loadData(id: String) {
         var clazz = MovieDetailBean::class.java
         var parser = GsonParser(clazz)
         var callback: Callback<MovieDetailBean> = object : Callback<MovieDetailBean>(parser) {
@@ -45,6 +45,7 @@ class MovieDetailPresenter(view: MovieDetailContract.View) : MovieDetailContract
             override fun onFailure(e: IOException) {
             }
         }
+        model.getMovieDetail(id, callback)
 
     }
 

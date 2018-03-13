@@ -1,5 +1,6 @@
 package com.ruheng.suiyue.data
 
+import com.ruheng.suiyue.data.bean.MovieDetailBean
 import com.ruheng.suiyue.data.bean.MovieListBean
 import com.ruheng.suiyue.network.Api
 import com.ruheng.suiyue.network.Callback
@@ -16,6 +17,8 @@ class MovieModel(okhttpUtil: OkhttpUtil) {
     var COMING_URL = "coming_soon"
     //top 250 电影
     var TOP_URL = "top250"
+    //电影详情信息
+    var DETAIL_URL = "subject/id"
 
     fun getOnlineList(callback: Callback<MovieListBean>) {
         var url = Api.BASE_MOVIE_URL + ONLINE_URL
@@ -39,6 +42,11 @@ class MovieModel(okhttpUtil: OkhttpUtil) {
             else -> Api.BASE_MOVIE_URL + TOP_URL + "?start=" + start
         }
 
+        mOkhttpUtil.getDataAsync(url, callback)
+    }
+
+    fun getMovieDetail(id: String, callback: Callback<MovieDetailBean>) {
+        var url = Api.BASE_MOVIE_URL + DETAIL_URL.replace("id", id.toString())
         mOkhttpUtil.getDataAsync(url, callback)
     }
 

@@ -3,6 +3,7 @@ package com.ruheng.suiyue.movie
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.gyf.barlibrary.ImmersionBar
 import com.ruheng.suiyue.R
 import com.ruheng.suiyue.data.bean.MovieDetailBean
@@ -47,9 +48,21 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
         val count = movieDetailBean.collectCount
         val image = movieDetailBean.images?.large
         val summary = movieDetailBean.summary
+        val year = movieDetailBean.year
+        val genres = movieDetailBean.genres
+        var genreStr = "$year"
+        genres!!.indices
+                .asSequence()
+                .takeWhile { it <= 2 }
+                .forEach { genreStr = genreStr + " / " + genres[it] }
         tv_movie_title.text = title
         tv_detail_title.text = title
-        tv_origin_title.text = originalTitle
+        if (originalTitle != "") {
+            tv_origin_title.text = "原名：" + originalTitle
+        } else {
+            tv_origin_title.visibility = View.GONE
+        }
+        tv_detail_geners.text = genreStr
         tv_detail_count.text = "$count 人"
         tv_detail_rating.text = rating.toString()
         rt_detail_rating.rating = rating.toFloat() / 2

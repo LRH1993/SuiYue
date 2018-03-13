@@ -17,16 +17,28 @@ class MovieModel(okhttpUtil: OkhttpUtil) {
     //top 250 电影
     var TOP_URL = "top250"
 
-    fun getOnlineList(callback: Callback<MovieListBean>){
-        var url = Api.BASE_MOVIE_URL+ONLINE_URL
-        mOkhttpUtil.getDataAsync(url,callback)
+    fun getOnlineList(callback: Callback<MovieListBean>) {
+        var url = Api.BASE_MOVIE_URL + ONLINE_URL
+        mOkhttpUtil.getDataAsync(url, callback)
     }
-    fun getComingList(callback: Callback<MovieListBean>){
-        var url = Api.BASE_MOVIE_URL+COMING_URL
-        mOkhttpUtil.getDataAsync(url,callback)
+
+    fun getComingList(callback: Callback<MovieListBean>) {
+        var url = Api.BASE_MOVIE_URL + COMING_URL
+        mOkhttpUtil.getDataAsync(url, callback)
     }
-    fun getTopList(callback: Callback<MovieListBean>){
-        var url = Api.BASE_MOVIE_URL+TOP_URL
-        mOkhttpUtil.getDataAsync(url,callback)
+
+    fun getTopList(callback: Callback<MovieListBean>) {
+        var url = Api.BASE_MOVIE_URL + TOP_URL
+        mOkhttpUtil.getDataAsync(url, callback)
+    }
+
+    fun getMoreList(start: Int, callback: Callback<MovieListBean>, type: Int) {
+        var url: String = when (type) {
+            1 -> Api.BASE_MOVIE_URL + ONLINE_URL + "?start=" + start
+            2 -> Api.BASE_MOVIE_URL + COMING_URL + "?start=" + start
+            else -> Api.BASE_MOVIE_URL + TOP_URL + "?start=" + start
+        }
+
+        mOkhttpUtil.getDataAsync(url, callback)
     }
 }

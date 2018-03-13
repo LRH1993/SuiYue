@@ -27,6 +27,9 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
     var mAllOnlineList = ArrayList<SubjectsItem>()
     var mAllComingList = ArrayList<SubjectsItem>()
     var mAllTopList = ArrayList<SubjectsItem>()
+    var mOnlineCount: Int = 0
+    var mComingCount: Int = 0
+    var mTopCount: Int = 0
     override fun getLayoutResources(): Int {
         return R.layout.fragment_movie
     }
@@ -56,6 +59,7 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
         if (mOnlineList?.size!! > 0) {
             mOnlineList?.clear()
         }
+        mOnlineCount = movieListBean.total
         movieListBean.subjects?.forEach {
             //只展示6个上映电影
             if (mOnlineList.size < 6) {
@@ -70,6 +74,7 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
         if (mComingList?.size!! > 0) {
             mComingList?.clear()
         }
+        mComingCount = movieListBean.total
         movieListBean.subjects?.forEach {
             //只展示8个即将上映电影
             if (mComingList.size < 8) {
@@ -84,6 +89,7 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
         if (mTopList?.size!! > 0) {
             mTopList?.clear()
         }
+        mTopCount = movieListBean.total
         movieListBean.subjects?.forEach {
             //只展示5个Top 250电影
             if (mTopList.size < 5) {
@@ -116,16 +122,19 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
             R.id.tv_online_all -> {
                 intent.putExtra("title", "影院热映")
                 intent.putExtra("list", mAllOnlineList)
+                intent.putExtra("count", mOnlineCount)
             }
 
             R.id.tv_coming_all -> {
                 intent.putExtra("title", "院线即将上映")
                 intent.putExtra("list", mAllComingList)
+                intent.putExtra("count", mComingCount)
             }
 
             R.id.tv_top_all -> {
                 intent.putExtra("title", "豆瓣 Top250")
                 intent.putExtra("list", mAllTopList)
+                intent.putExtra("count", mTopCount)
             }
 
         }

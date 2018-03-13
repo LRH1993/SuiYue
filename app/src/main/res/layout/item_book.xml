@@ -74,11 +74,11 @@
                         android:layout_width="70dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="4dp"
+                        android:isIndicator="true"
                         app:mrb_progressTint="@color/pink"
                         app:mrb_secondaryProgressTint="@color/pink" />
 
                     <TextView
-                        android:text="9.1"
                         android:id="@+id/tv_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -86,7 +86,6 @@
                         android:textColor="@color/yellow" />
 
                     <TextView
-                        android:text="282评价"
                         android:id="@+id/tv_rating_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

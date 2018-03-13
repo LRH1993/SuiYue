@@ -164,6 +164,7 @@
                         android:id="@+id/rt_detail_rating"
                         android:layout_width="60dp"
                         android:layout_height="15dp"
+                        android:isIndicator="true"
                         app:mrb_progressTint="@color/yellow"
                         app:mrb_secondaryProgressTint="@color/yellow" />
 

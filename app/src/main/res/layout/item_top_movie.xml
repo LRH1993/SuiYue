@@ -74,6 +74,7 @@
                 android:id="@+id/rt_top_rating"
                 android:layout_width="100dp"
                 android:layout_height="20dp"
+                android:isIndicator="true"
                 app:mrb_progressTint="@color/yellow"
                 app:mrb_secondaryProgressTint="@color/yellow" />
 

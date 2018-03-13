@@ -1,10 +1,12 @@
 package com.ruheng.suiyue.movie
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.ruheng.suiyue.R
@@ -67,7 +69,11 @@ class TopAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : Recy
             holder?.tv_rank?.visibility = View.VISIBLE
             holder?.tv_rank?.text = (position + 1).toString()
         }
-
+        holder.ll_root?.setOnClickListener {
+            var intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra("id", bean?.id)
+            context?.startActivity(intent)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopViewHolder {
@@ -86,8 +92,10 @@ class TopAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : Recy
         var tv_geners: TextView? = null
         var tv_casts: TextView? = null
         var tv_rank: TextView? = null
+        var ll_root: LinearLayout? = null
 
         init {
+            ll_root = itemView?.findViewById(R.id.ll_root)
             sv_photo = itemView?.findViewById(R.id.sv_top_photo)
             tv_title = itemView?.findViewById(R.id.tv_top_title)
             tv_rating = itemView?.findViewById(R.id.tv_top_rating)

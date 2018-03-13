@@ -41,4 +41,5 @@ class MovieModel(okhttpUtil: OkhttpUtil) {
 
         mOkhttpUtil.getDataAsync(url, callback)
     }
+
 }

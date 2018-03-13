@@ -1,6 +1,8 @@
 package com.ruheng.suiyue.movie
 
 import android.content.Context
+import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +38,11 @@ class ComingAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : R
         holder.tv_title?.text = title
         holder.sv_photo?.setImageURI(imgUrl)
         holder.tv_geners?.text = genStr
+        holder.cv_root?.setOnClickListener {
+            var intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra("id", bean.id)
+            context?.startActivity(intent)
+        }
 
     }
 
@@ -51,8 +58,10 @@ class ComingAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : R
         var sv_photo: SimpleDraweeView? = null
         var tv_title: TextView? = null
         var tv_geners: TextView? = null
+        var cv_root: CardView? = null
 
         init {
+            cv_root = itemView?.findViewById(R.id.cv_root)
             sv_photo = itemView?.findViewById(R.id.sv_movie_photo)
             tv_title = itemView?.findViewById(R.id.tv_movie_title)
             tv_geners = itemView?.findViewById(R.id.tv_movie_geners)

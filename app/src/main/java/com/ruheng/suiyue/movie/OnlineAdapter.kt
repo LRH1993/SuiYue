@@ -1,6 +1,8 @@
 package com.ruheng.suiyue.movie
 
 import android.content.Context
+import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -29,13 +31,18 @@ class OnlineAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : R
         val title = bean?.title
         val imgUrl = bean?.images?.small
         var rating = bean?.rating?.average
-        if(rating==0.0){
-            rating=8.5
+        if (rating == 0.0) {
+            rating = 8.5
         }
         holder.tv_title?.text = title
         holder.sv_photo?.setImageURI(imgUrl)
         holder?.rt_rating?.rating = rating?.toFloat()!! / 2
         holder?.tv_rating?.text = rating.toString()
+        holder.cv_root?.setOnClickListener {
+            var intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra("id", bean?.id)
+            context?.startActivity(intent)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnlineViewHolder {
@@ -51,8 +58,10 @@ class OnlineAdapter(context: Context, movieList: MutableList<SubjectsItem>?) : R
         var tv_title: TextView? = null
         var tv_rating: TextView? = null
         var rt_rating: MaterialRatingBar? = null
+        var cv_root: CardView? = null
 
         init {
+            cv_root = itemView?.findViewById(R.id.cv_root)
             sv_photo = itemView?.findViewById(R.id.sv_movie_photo)
             tv_title = itemView?.findViewById(R.id.tv_movie_title)
             tv_rating = itemView?.findViewById(R.id.tv_movie_rating)

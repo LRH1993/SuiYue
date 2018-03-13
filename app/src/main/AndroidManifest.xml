@@ -33,6 +33,7 @@
             tools:replace="screenOrientation"></activity>
         <activity android:name=".book.BookDetailActivity"></activity>
         <activity android:name=".movie.MovieListActivity"></activity>
+        <activity android:name=".movie.MovieDetailActivity"></activity>
 
     </application>
 

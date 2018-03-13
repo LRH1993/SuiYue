@@ -11,6 +11,7 @@ import com.ruheng.suiyue.data.bean.MovieListBean
 import com.ruheng.suiyue.data.bean.SubjectsItem
 import kotlinx.android.synthetic.main.fragment_movie.*
 
+
 /**
  * Created by lvruheng on 2018/2/28.
  */
@@ -52,8 +53,10 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
         rv_top.layoutManager = topLayoutManager
         mTopAdapter = TopAdapter(context!!, mTopList)
         rv_top.adapter = mTopAdapter
-        //todo 滑动冲突
+        rv_top.isNestedScrollingEnabled = false
+
     }
+
 
     override fun setOnlineList(movieListBean: MovieListBean) {
         if (mOnlineList?.size!! > 0) {

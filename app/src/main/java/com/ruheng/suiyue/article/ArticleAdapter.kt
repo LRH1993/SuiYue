@@ -43,6 +43,7 @@ class ArticleAdapter(context: Context, contentList: MutableList<ContentListItem>
             var intent = Intent(context, ArticleDetailActivity::class.java)
             var item_id = bean?.itemId
             intent.putExtra("item_id", item_id)
+            intent.putExtra("category",bean?.category)
             context?.let { context ->
                 context.startActivity(intent)
             }

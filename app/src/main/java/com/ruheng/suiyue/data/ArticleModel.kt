@@ -1,8 +1,6 @@
 package com.ruheng.suiyue.data
 
-import com.ruheng.suiyue.data.bean.ArticleDetailBean
-import com.ruheng.suiyue.data.bean.IdListBean
-import com.ruheng.suiyue.data.bean.OneListBean
+import com.ruheng.suiyue.data.bean.*
 import com.ruheng.suiyue.network.Api
 import com.ruheng.suiyue.network.Callback
 import com.ruheng.suiyue.network.OkhttpUtil
@@ -26,6 +24,7 @@ class ArticleModel(okhttpUtil: OkhttpUtil) {
     val SERIAL = "serialcontent"
     //类别3 问答
     val QUESTION = "question"
+
     fun getIdList(callback: Callback<IdListBean>) {
         var url = Api.BASE_ARTICLE_URL + IDLIST_URL
         mOkhttpUtil.getDataAsync(url, callback)
@@ -36,8 +35,24 @@ class ArticleModel(okhttpUtil: OkhttpUtil) {
         mOkhttpUtil.getDataAsync(url, callback)
     }
 
-    fun getDetail(item_id: String, callback: Callback<ArticleDetailBean>) {
-        val url = Api.BASE_ARTICLE_URL + DETAIL_URL.replace("item_id", item_id, false)
+    fun getDetail(category: String, item_id: String, callback: Callback<ArticleDetailBean>) {
+        var url = Api.BASE_ARTICLE_URL + DETAIL_URL.replace("item_id", item_id, false)
+        mOkhttpUtil.getDataAsync(url, callback)
+    }
+
+    fun getSerialDetail(category: String, item_id: String, callback: Callback<SerialContentBean>) {
+        var url = Api.BASE_ARTICLE_URL + DETAIL_URL.replace("item_id", item_id, false)
+        if (category == "2") {
+            url = url.replace("essay", "serialcontent")
+        }
+        mOkhttpUtil.getDataAsync(url, callback)
+    }
+
+    fun getQuestionDetail(category: String, item_id: String, callback: Callback<QuestionContentBean>) {
+        var url = Api.BASE_ARTICLE_URL + DETAIL_URL.replace("item_id", item_id, false)
+        if (category == "3") {
+            url = url.replace("essay", "question")
+        }
         mOkhttpUtil.getDataAsync(url, callback)
     }
 }

@@ -21,7 +21,7 @@ class FilScrollView(context: Context, attrs: AttributeSet) : ScrollView(context,
         when (action) {
             MotionEvent.ACTION_DOWN -> {
                 intercepted = false
-                //调用onInterceptTouchEvent方法初始化mActivePointerId
+                //初始化mActivePointerId
                 super.onInterceptTouchEvent(ev)
             }
             MotionEvent.ACTION_MOVE -> {

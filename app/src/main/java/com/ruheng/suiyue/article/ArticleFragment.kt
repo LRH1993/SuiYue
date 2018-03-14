@@ -64,7 +64,9 @@ class ArticleFragment : BaseFragment(), ArticleContract.View, SwipeRefreshLayout
             mIndex = mIndex.inc()
         }
         oneListBean.data.contentList?.forEach {
-            mList?.add(it)
+            if (it.category != "0") {
+                mList?.add(it)
+            }
         }
         mAdapter?.notifyDataSetChanged()
     }

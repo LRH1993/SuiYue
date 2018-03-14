@@ -1,5 +1,6 @@
 package com.ruheng.suiyue.data
 
+import com.ruheng.suiyue.data.bean.ArticleDetailBean
 import com.ruheng.suiyue.data.bean.IdListBean
 import com.ruheng.suiyue.data.bean.OneListBean
 import com.ruheng.suiyue.network.Api
@@ -19,7 +20,12 @@ class ArticleModel(okhttpUtil: OkhttpUtil) {
     val DETAIL_URL = "essay/item_id?channel=wdj&source=summary&source_id=9261&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android"
     //获取评论信息，其中item_id替换成onelist中的item_id值
     val COMMENT_URL = "comment/praiseandtime/essay/item_id/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android"
-
+    //类别1 短文
+    val ESSAY = "essay"
+    //类别2 连载
+    val SERIAL = "serialcontent"
+    //类别3 问答
+    val QUESTION = "question"
     fun getIdList(callback: Callback<IdListBean>) {
         var url = Api.BASE_ARTICLE_URL + IDLIST_URL
         mOkhttpUtil.getDataAsync(url, callback)
@@ -27,6 +33,11 @@ class ArticleModel(okhttpUtil: OkhttpUtil) {
 
     fun getOneList(data: String, callback: Callback<OneListBean>) {
         val url = Api.BASE_ARTICLE_URL + ONELIST_URL.replace("data", data, false)
-        mOkhttpUtil.getDataAsync(url,callback)
+        mOkhttpUtil.getDataAsync(url, callback)
+    }
+
+    fun getDetail(item_id: String, callback: Callback<ArticleDetailBean>) {
+        val url = Api.BASE_ARTICLE_URL + DETAIL_URL.replace("item_id", item_id, false)
+        mOkhttpUtil.getDataAsync(url, callback)
     }
 }

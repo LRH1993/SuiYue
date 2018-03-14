@@ -1,24 +1,45 @@
 package com.ruheng.suiyue.article
 
+import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import com.gyf.barlibrary.ImmersionBar
 import com.ruheng.suiyue.R
+import com.ruheng.suiyue.data.bean.ArticleDetailBean
+import kotlinx.android.synthetic.main.activity_article_detail.*
 
 /**
  * Created by lvruheng on 2018/3/7.
  */
-class ArticleDetailActivity:AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+class ArticleDetailActivity : AppCompatActivity(), ArticleDetailContract.View {
+    private lateinit var mPresenter: ArticleDetailPresenter
+    private var item_id: String = ""
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_detail)
-        ImmersionBar.with(this).transparentBar().barAlpha(0.3f).init()
-        //隐藏底部导航栏
-        val decorView = window.decorView
-        val uiOptions = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        decorView.systemUiVisibility = uiOptions
+        ImmersionBar.with(this).transparentBar().barAlpha(0.3f).fitsSystemWindows(true).init()
+        val extras = intent.extras
+        item_id = extras.get("item_id") as String
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mPresenter = ArticleDetailPresenter(this)
+        mPresenter.start(item_id)
+    }
+
+    override fun setPresenter(presenter: ArticleDetailContract.Presenter) {
+        //省略
+    }
+
+    override fun getDetailContext(): Context? {
+        return this
+    }
+
+    override fun setArticle(articleDetailBean: ArticleDetailBean) {
+        val data = articleDetailBean.data
+        val hpTitle = data.hpTitle
+        tv_article_title.text = hpTitle
     }
 }

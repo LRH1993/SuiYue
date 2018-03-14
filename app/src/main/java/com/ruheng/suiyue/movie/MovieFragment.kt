@@ -53,7 +53,6 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
         rv_top.layoutManager = topLayoutManager
         mTopAdapter = TopAdapter(context!!, mTopList)
         rv_top.adapter = mTopAdapter
-        rv_top.isNestedScrollingEnabled = false
 
     }
 

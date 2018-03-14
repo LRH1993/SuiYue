@@ -31,12 +31,11 @@
 
 利用ONE API
 
-| url                                      | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| http://v3.wufazhuce.com:8000/api/onelist/idlist/?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android | 获取最新 idlist, 以获取今日或往日的 onelist 信息        |
-| http://v3.wufazhuce.com:8000/api/onelist/:data/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android | 获取 onelist,其中:data替换成上面的idlist中的数据，代表最近一周的某一天 |
-| http://v3.wufazhuce.com:8000/api/essay/:item_id?channel=wdj&source=summary&source_id=9261&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android | 获取故事详细信息，其中:item_id替换成onelist中的item_id值  |
-| http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/:item_id/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android | 获取评论信息，其中:item_id和上述相同                   |
+| url                                      | 描述                                      |
+| ---------------------------------------- | --------------------------------------- |
+| http://v3.wufazhuce.com:8000/api/onelist/idlist | 获取最新 idlist, 以获取今日或往日的 onelist 信息       |
+| http://v3.wufazhuce.com:8000/api/onelist/:data/0 | 获取某一天的onelist,其中:data替换成上面的idlist中的数据   |
+| http://v3.wufazhuce.com:8000/api/essay/:item_id | 获取故事详细信息，其中:item_id替换成onelist中的item_id值 |
 
 ### 电影
 
@@ -59,15 +58,17 @@
 - 通信框架EventBus
 - 安全加固
 - 代码混淆
-- …...
+- MVP模式
 
-## 四、原型
+## 四、Screenshot
 
-![](https://raw.githubusercontent.com/LRH1993/SuiYue/master/screenshot/prototype.png)
 
-## 五、输出
+
+## 五、学习输出
 
 [从google todo-mvp示例再次学习MVP](https://juejin.im/post/5a9654f86fb9a0634a39450e)
+
+[ScrollView嵌套RecyclerView滑动冲突相关问题](https://juejin.im/post/5aa8c2f1f265da237c689946)
 
 
 

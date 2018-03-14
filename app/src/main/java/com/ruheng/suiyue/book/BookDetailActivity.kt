@@ -25,6 +25,9 @@ class BookDetailActivity : AppCompatActivity(), BookDetailContract.View {
         mPresenter = BookDetailPresenter(this)
         val extras = intent.extras
         val ibsn = extras.get("ibsn")
+        if(ibsn==null){
+            finish()
+        }
         mPresenter.start(ibsn as String)
         iv_detail_back.setOnClickListener {
             finish()

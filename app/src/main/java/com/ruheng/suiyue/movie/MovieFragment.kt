@@ -70,6 +70,8 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
             mAllOnlineList?.add(it)
         }
         mOnlineAdapter?.notifyDataSetChanged()
+        tv_online_all.text = "全部"
+        tv_online_name.text = "影院热映"
     }
 
     override fun setComingList(movieListBean: MovieListBean) {
@@ -85,6 +87,8 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
             mAllComingList?.add(it)
         }
         mComingAdapter?.notifyDataSetChanged()
+        tv_coming_all.text = "全部"
+        tv_coming_name.text = "院线即将上映"
     }
 
     override fun setTopList(movieListBean: MovieListBean) {
@@ -100,6 +104,8 @@ class MovieFragment : BaseFragment(), MovieContract.View, View.OnClickListener {
             mAllTopList?.add(it)
         }
         mTopAdapter?.notifyDataSetChanged()
+        tv_top_all.text = "全部"
+        tv_top_name.text = "豆瓣 Top250"
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

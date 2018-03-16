@@ -73,9 +73,9 @@
 
 [ScrollView嵌套RecyclerView滑动冲突相关问题](https://juejin.im/post/5aa8c2f1f265da237c689946)
 
-![二维码]()
+![二维码](https://github.com/LRH1993/SuiYue/blob/master/screenshot/%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
 
-下载apk体验
+扫描二维码，下载apk体验
 
 
 
